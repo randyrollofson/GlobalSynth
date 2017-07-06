@@ -1,15 +1,9 @@
 
-
-.whiteKey:hover {
-    background-color:grey;
-}
-
 #keyboard {
     position:absolute;
     left:100px;
     width:588px;
     height:250px;
-    
 }
 /* White Keys */
 #C3 {
