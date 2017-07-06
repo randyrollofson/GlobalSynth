@@ -1,13 +1,19 @@
 
 
-.keyboard:hover {
+.whiteKey:hover {
     background-color:grey;
+}
+
+#keyboard {
+    position:absolute;
+    left:100px;
+    width:588px;
+    height:250px;
+    
 }
 /* White Keys */
 #C3 {
     position:absolute;
-    left:100px;
-    top:100px;
     width:40px;
     height:250px;
     border:1px solid #000;
@@ -16,8 +22,7 @@
 
 #D3 {
     position:absolute;
-    left:142px;
-    top:100px;
+    left:42px;
     width:40px;
     height:250px;
     border:1px solid #000;
@@ -26,8 +31,7 @@
 
 #E3 {
     position:absolute;
-    left:184px;
-    top:100px;
+    left:84px;
     width:40px;
     height:250px;
     border:1px solid #000;
@@ -36,8 +40,7 @@
 
 #F3 {
     position:absolute;
-    left:226px;
-    top:100px;
+    left:126px;
     width:40px;
     height:250px;
     border:1px solid #000;
@@ -46,8 +49,7 @@
 
 #G3 {
     position:absolute;
-    left:268px;
-    top:100px;
+    left:168px;
     width:40px;
     height:250px;
     border:1px solid #000;
@@ -56,8 +58,7 @@
 
 #A3 {
     position:absolute;
-    left:310px;
-    top:100px;
+    left:210px;
     width:40px;
     height:250px;
     border:1px solid #000;
@@ -66,8 +67,7 @@
 
 #B3 {
     position:absolute;
-    left:352px;
-    top:100px;
+    left:252px;
     width:40px;
     height:250px;
     border:1px solid #000;
@@ -76,8 +76,7 @@
 
 #C4 {
     position:absolute;
-    left:394px;
-    top:100px;
+    left:294px;
     width:40px;
     height:250px;
     border:1px solid #000;
@@ -86,8 +85,7 @@
 
 #D4 {
     position:absolute;
-    left:436px;
-    top:100px;
+    left:336px;
     width:40px;
     height:250px;
     border:1px solid #000;
@@ -96,8 +94,7 @@
 
 #E4 {
     position:absolute;
-    left:478px;
-    top:100px;
+    left:378px;
     width:40px;
     height:250px;
     border:1px solid #000;
@@ -106,8 +103,7 @@
 
 #F4 {
     position:absolute;
-    left:520px;
-    top:100px;
+    left:420px;
     width:40px;
     height:250px;
     border:1px solid #000;
@@ -116,8 +112,7 @@
 
 #G4 {
     position:absolute;
-    left:562px;
-    top:100px;
+    left:462px;
     width:40px;
     height:250px;
     border:1px solid #000;
@@ -126,8 +121,7 @@
 
 #A4 {
     position:absolute;
-    left:604px;
-    top:100px;
+    left:504px;
     width:40px;
     height:250px;
     border:1px solid #000;
@@ -136,8 +130,7 @@
 
 #B4 {
     position:absolute;
-    left:646px;
-    top:100px;
+    left:546px;
     width:40px;
     height:250px;
     border:1px solid #000;
@@ -147,8 +140,7 @@
 /* Black Keys */
 #CSharp3 {
     position:absolute;
-    left:126px;
-    top:100px;
+    left:26px;
     width:26px;
     height:150px;
     background:black;
@@ -156,8 +148,7 @@
 
 #DSharp3 {
     position:absolute;
-    left:174px;
-    top:100px;
+    left:74px;
     width:26px;
     height:150px;
     background:black;
@@ -165,8 +156,7 @@
 
 #FSharp3 {
     position:absolute;
-    left:252px;
-    top:100px;
+    left:152px;
     width:26px;
     height:150px;
     background:black;
@@ -174,8 +164,7 @@
 
 #GSharp3 {
     position:absolute;
-    left:298px;
-    top:100px;
+    left:198px;
     width:26px;
     height:150px;
     background:black;
@@ -183,8 +172,7 @@
 
 #ASharp3 {
     position:absolute;
-    left:342px;
-    top:100px;
+    left:242px;
     width:26px;
     height:150px;
     background:black;
@@ -192,8 +180,7 @@
 
 #CSharp4 {
     position:absolute;
-    left:420px;
-    top:100px;
+    left:320px;
     width:26px;
     height:150px;
     background:black;
@@ -201,8 +188,7 @@
 
 #DSharp4 {
     position:absolute;
-    left:468px;
-    top:100px;
+    left:368px;
     width:26px;
     height:150px;
     background:black;
@@ -210,8 +196,7 @@
 
 #FSharp4 {
     position:absolute;
-    left:546px;
-    top:100px;
+    left:446px;
     width:26px;
     height:150px;
     background:black;
@@ -219,8 +204,7 @@
 
 #GSharp4 {
     position:absolute;
-    left:592px;
-    top:100px;
+    left:492px;
     width:26px;
     height:150px;
     background:black;
@@ -228,8 +212,7 @@
 
 #ASharp4 {
     position:absolute;
-    left:636px;
-    top:100px;
+    left:536px;
     width:26px;
     height:150px;
     background:black;

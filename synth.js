@@ -1,5 +1,5 @@
 var context = new (window.AudioContext || window.webkitAudioContext)();
-
+console.log("Test");
 //var source = context.createMediaStreamSource(stream);
 
 /*
@@ -55,7 +55,11 @@ var ASharp4 = 466.16;
 var B4 = 493.88;
 //var C5 = 523.25;
 
-function playPitch(pitch) {
+function playPitch(id) {
+    //var pitch = id;
+    
+    pitch = C4;
+    //var c = document.getElementsByClassName("keyboard");
     var osc = context.createOscillator();
     osc.connect(context.destination);
     osc.type = "sine";
@@ -64,6 +68,12 @@ function playPitch(pitch) {
     osc.start(0);
 
     //return osc;
+}
+
+var spans = document.getElementsByTagName('span');
+for (var i = 0; i < spans.length; i++) {
+    console.log(spans[i].id);
+    //spans[i].onclick = playPitch(this.id);
 }
 
 /*
@@ -82,10 +92,10 @@ function notePressed(event) {
 var c = document.getElementById("C4");
 
 //object.onmousedown = 
-c.addEventListener("mousedown", playPitch(C4));
+//window.addEventListener("mousedown", playPitch, false);
 //c.addEventListener("moudeup", noteReleased, false);
 
-//playPitch(C4);
+//playPitch();
 
 
 
