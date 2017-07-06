@@ -1,0 +1,236 @@
+
+
+.keyboard:hover {
+    background-color:grey;
+}
+/* White Keys */
+#C3 {
+    position:absolute;
+    left:100px;
+    top:100px;
+    width:40px;
+    height:250px;
+    border:1px solid #000;
+    background:white;
+}
+
+#D3 {
+    position:absolute;
+    left:142px;
+    top:100px;
+    width:40px;
+    height:250px;
+    border:1px solid #000;
+    background:white;
+}
+
+#E3 {
+    position:absolute;
+    left:184px;
+    top:100px;
+    width:40px;
+    height:250px;
+    border:1px solid #000;
+    background:white;
+}
+
+#F3 {
+    position:absolute;
+    left:226px;
+    top:100px;
+    width:40px;
+    height:250px;
+    border:1px solid #000;
+    background:white;
+}
+
+#G3 {
+    position:absolute;
+    left:268px;
+    top:100px;
+    width:40px;
+    height:250px;
+    border:1px solid #000;
+    background:white;
+}
+
+#A3 {
+    position:absolute;
+    left:310px;
+    top:100px;
+    width:40px;
+    height:250px;
+    border:1px solid #000;
+    background:white;
+}
+
+#B3 {
+    position:absolute;
+    left:352px;
+    top:100px;
+    width:40px;
+    height:250px;
+    border:1px solid #000;
+    background:white;
+}
+
+#C4 {
+    position:absolute;
+    left:394px;
+    top:100px;
+    width:40px;
+    height:250px;
+    border:1px solid #000;
+    background:white;
+}
+
+#D4 {
+    position:absolute;
+    left:436px;
+    top:100px;
+    width:40px;
+    height:250px;
+    border:1px solid #000;
+    background:white;
+}
+
+#E4 {
+    position:absolute;
+    left:478px;
+    top:100px;
+    width:40px;
+    height:250px;
+    border:1px solid #000;
+    background:white;
+}
+
+#F4 {
+    position:absolute;
+    left:520px;
+    top:100px;
+    width:40px;
+    height:250px;
+    border:1px solid #000;
+    background:white;
+}
+
+#G4 {
+    position:absolute;
+    left:562px;
+    top:100px;
+    width:40px;
+    height:250px;
+    border:1px solid #000;
+    background:white;
+}
+
+#A4 {
+    position:absolute;
+    left:604px;
+    top:100px;
+    width:40px;
+    height:250px;
+    border:1px solid #000;
+    background:white;
+}
+
+#B4 {
+    position:absolute;
+    left:646px;
+    top:100px;
+    width:40px;
+    height:250px;
+    border:1px solid #000;
+    background:white;
+}
+
+/* Black Keys */
+#CSharp3 {
+    position:absolute;
+    left:126px;
+    top:100px;
+    width:26px;
+    height:150px;
+    background:black;
+}
+
+#DSharp3 {
+    position:absolute;
+    left:174px;
+    top:100px;
+    width:26px;
+    height:150px;
+    background:black;
+}
+
+#FSharp3 {
+    position:absolute;
+    left:252px;
+    top:100px;
+    width:26px;
+    height:150px;
+    background:black;
+}
+
+#GSharp3 {
+    position:absolute;
+    left:298px;
+    top:100px;
+    width:26px;
+    height:150px;
+    background:black;
+}
+
+#ASharp3 {
+    position:absolute;
+    left:342px;
+    top:100px;
+    width:26px;
+    height:150px;
+    background:black;
+}
+
+#CSharp4 {
+    position:absolute;
+    left:420px;
+    top:100px;
+    width:26px;
+    height:150px;
+    background:black;
+}
+
+#DSharp4 {
+    position:absolute;
+    left:468px;
+    top:100px;
+    width:26px;
+    height:150px;
+    background:black;
+}
+
+#FSharp4 {
+    position:absolute;
+    left:546px;
+    top:100px;
+    width:26px;
+    height:150px;
+    background:black;
+}
+
+#GSharp4 {
+    position:absolute;
+    left:592px;
+    top:100px;
+    width:26px;
+    height:150px;
+    background:black;
+}
+
+#ASharp4 {
+    position:absolute;
+    left:636px;
+    top:100px;
+    width:26px;
+    height:150px;
+    background:black;
+}
