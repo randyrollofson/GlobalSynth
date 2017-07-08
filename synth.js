@@ -42,54 +42,17 @@ var B4 = 493.88;
 //var C5 = 523.25;
 
 function playPitch(pitch) {
-    //var pitch = id;
-
-    //pitch = value;
-    //var c = document.getElementsByClassName("keyboard");
     osc = context.createOscillator();
     osc.connect(context.destination);
     osc.type = "triangle";
     osc.frequency.value = pitch;
-    //osc.connect(context.destination);
     osc.start();
-    //osc.stop(context.currentTime + 1);
-
-    //return osc;
 }
 
 function stopPitch() {
     osc.stop(0);
     //osc.disconnect();
 }
-
-var spans = document.getElementsByTagName('span');
-for (var i = 0; i < spans.length; i++) {
-    console.log(spans[i].id);
-    //spans[i].onclick = playPitch(this.id);
-}
-
-/*
-function notePressed(event) {
-    if (event.buttons & 1) {
-        var dataset = event.target.dataset;
-    }
-
-    if (!dataset["pressed"]) {
-        playPitch(dataset["frequency"]);
-        dataset["pressed"] = "yes";
-    }
-}
-*/
-
-var c = document.getElementById("C4");
-
-//object.onmousedown = 
-//window.addEventListener("mousedown", playPitch, false);
-//c.addEventListener("moudeup", noteReleased, false);
-
-//playPitch();
-
-
 
 //var analyser = context.createAnalyser();
 
