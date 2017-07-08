@@ -2,6 +2,7 @@ var context = new (window.AudioContext || window.webkitAudioContext)();
 console.log("Test");
 //var source = context.createMediaStreamSource(stream);
 var osc;
+var key;
 
 var filter = context.createBiquadFilter();
 filter.type = "lowpass";
@@ -12,7 +13,6 @@ filter.gain.value = 0;
 var gain = context.createGain();
 gain.gain.value = 0.5;
 gain.connect(context.destination);
-
 
 //Equal temperament pitches
 var C3 = 130.81;
@@ -41,7 +41,9 @@ var ASharp4 = 466.16;
 var B4 = 493.88;
 //var C5 = 523.25;
 
-function playPitch(pitch) {
+function playPitch(pitch, id) {
+    key = document.getElementById(id);
+    key.style.backgroundColor='lightgrey';
     osc = context.createOscillator();
     osc.connect(context.destination);
     osc.type = "triangle";
@@ -49,10 +51,22 @@ function playPitch(pitch) {
     osc.start();
 }
 
-function stopPitch() {
+function stopPitch(className) {
     osc.stop(0);
+    if (className == 'whiteKey') {
+            color = 'white';
+    } else {
+            color = 'black';
+    }
+    key.style.backgroundColor = color;
     //osc.disconnect();
 }
+
+function changeColor(newColor) {
+    var keyDown = document.getElementById("D3");
+    keyDown.color = newColor;
+}
+
 
 //var analyser = context.createAnalyser();
 
