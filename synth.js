@@ -1,3 +1,10 @@
+/*  Copyright © 2017 Randy Rollofson
+    ALL RIGHTS RESERVED
+    [This program is licensed under the "MIT License"]
+    Please see the file COPYING in the source
+    distribution of this software for license terms.
+*/
+
 var context = new (window.AudioContext || window.webkitAudioContext)();
 console.log("Test");
 //var source = context.createMediaStreamSource(stream);
