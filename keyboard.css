@@ -8,8 +8,8 @@
 #keyboard {
     position:absolute;
     left:100px;
-    width:588px;
-    height:250px;
+    width:630px;
+    height:252px;
 }
 /* White Keys */
 #C3 {
@@ -18,6 +18,8 @@
     height:250px;
     border:1px solid #000;
     background:white;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 #D3 {
@@ -27,6 +29,8 @@
     height:250px;
     border:1px solid #000;
     background:white;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 #E3 {
@@ -36,6 +40,8 @@
     height:250px;
     border:1px solid #000;
     background:white;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 #F3 {
@@ -45,7 +51,10 @@
     height:250px;
     border:1px solid #000;
     background:white;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
+
 
 #G3 {
     position:absolute;
@@ -54,6 +63,8 @@
     height:250px;
     border:1px solid #000;
     background:white;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 #A3 {
@@ -63,6 +74,8 @@
     height:250px;
     border:1px solid #000;
     background:white;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 #B3 {
@@ -72,6 +85,8 @@
     height:250px;
     border:1px solid #000;
     background:white;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 #C4 {
@@ -81,6 +96,8 @@
     height:250px;
     border:1px solid #000;
     background:white;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 #D4 {
@@ -90,6 +107,8 @@
     height:250px;
     border:1px solid #000;
     background:white;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 #E4 {
@@ -99,6 +118,8 @@
     height:250px;
     border:1px solid #000;
     background:white;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 #F4 {
@@ -108,6 +129,8 @@
     height:250px;
     border:1px solid #000;
     background:white;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 #G4 {
@@ -117,6 +140,8 @@
     height:250px;
     border:1px solid #000;
     background:white;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 #A4 {
@@ -126,15 +151,30 @@
     height:250px;
     border:1px solid #000;
     background:white;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 #B4 {
+     position:absolute;
+     left:546px;
+     width:40px;
+     height:250px;
+     border:1px solid #000;
+     background:white;
+     border-bottom-right-radius: 5px;
+     border-bottom-left-radius: 5px;
+ }
+
+#C5 {
     position:absolute;
-    left:546px;
+    left:588px;
     width:40px;
     height:250px;
     border:1px solid #000;
     background:white;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 /* Black Keys */
@@ -144,6 +184,8 @@
     width:26px;
     height:150px;
     background:black;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 #DSharp3 {
@@ -152,6 +194,8 @@
     width:26px;
     height:150px;
     background:black;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 #FSharp3 {
@@ -160,6 +204,8 @@
     width:26px;
     height:150px;
     background:black;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 #GSharp3 {
@@ -168,6 +214,8 @@
     width:26px;
     height:150px;
     background:black;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 #ASharp3 {
@@ -176,6 +224,8 @@
     width:26px;
     height:150px;
     background:black;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 #CSharp4 {
@@ -184,6 +234,8 @@
     width:26px;
     height:150px;
     background:black;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 #DSharp4 {
@@ -192,6 +244,8 @@
     width:26px;
     height:150px;
     background:black;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 #FSharp4 {
@@ -200,6 +254,8 @@
     width:26px;
     height:150px;
     background:black;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 #GSharp4 {
@@ -208,6 +264,8 @@
     width:26px;
     height:150px;
     background:black;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 #ASharp4 {
@@ -216,4 +274,6 @@
     width:26px;
     height:150px;
     background:black;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
