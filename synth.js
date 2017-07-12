@@ -8,9 +8,12 @@
 var context = new (window.AudioContext || window.webkitAudioContext)();
 window.addEventListener('keydown', keyDownHandler, false);
 window.addEventListener('keyup', keyUpHandler, false);
+//window.addEventListener('mousedown', mouseDownHandler, false);
+//window.addEventListener('mouseup', mouseUpHandler, false);
 //var source = context.createMediaStreamSource(stream);
 var osc;
 var key;
+var mouse;
 var down = false;
 
 var filter = context.createBiquadFilter();
@@ -80,17 +83,52 @@ var CSharp4 = {
     id:"CSharp4",
     freq:277.18
 };
-var D4 = 293.66;
-var DSharp4 = 311.13;
-var E4 = 329.63;
-var F4 = 349.23;
-var FSharp4 = 369.99;
-var G4 = 392.00;
-var GSharp4 = 415.30;
-var A4 = 440.00;
-var ASharp4 = 466.16;
-var B4 = 493.88;
-var C5 = 523.25;
+var D4 = {
+    id:"D4",
+    freq:293.66
+};
+var DSharp4 = {
+    id:"DSharp4",
+    freq:311.13
+};
+var E4 = {
+    id:"E4",
+    freq:329.63
+};
+var F4 = {
+    id:"F4",
+    freq:349.23
+};
+/*
+var FSharp4 = {
+    id:"FSharp4",
+    freq:369.99
+};
+var G4 = {
+    id:"G4",
+    freq:392.00
+};
+var GSharp4 = {
+    id:"GSharp4",
+    freq:415.30
+};
+var A4 = {
+    id:"A4",
+    freq:440.00;
+};
+var ASharp4 = {
+    id:"ASharp4",
+    freq:466.16
+};
+var B4 = {
+    id:"B4",
+    freq:493.88
+};
+var C5 = {
+    id:"C5",
+    freq:523.25
+};
+*/
 
 var keys = new Array(128);
 keys[65] = C3;
@@ -106,36 +144,47 @@ keys[72] = A3;
 keys[85] = ASharp3;
 keys[74] = B3;
 keys[75] = C4;
-//keys[79] = CSharp4;
-//keys[76] = D4;
-//keys[80] = DSharp4;
-//keys[186] = E4;
-//keys[222] = F4;
+keys[79] = CSharp4;
+keys[76] = D4;
+keys[80] = DSharp4;
+keys[186] = E4;
+keys[222] = F4;
 //keys[221] = FSharp4;
 //keys[13] = G4;
 //keys[220] = GSharp4;
 
-function keyDownHandler (ev) {
+function keyDownHandler(ev) {
     key = document.getElementById(keys[ev.keyCode].id);
     key.style.backgroundColor='lightgrey';
     if(down)
         return;
     down = true;
-    key.classList.add("pressed");
-
+    if (key.className == "unpressed") {
+        key.classList.remove("unpressed");
+        key.classList.add("pressed");
+    }
     playPitch(keys[ev.keyCode].freq);
 }
 
-function keyUpHandler (ev) {
+function keyUpHandler(ev) {
     stopPitch();
-    down = false;
     key = document.getElementById(keys[ev.keyCode].id);
     if (key.className == 'whiteKey') {
-            color = 'white';
-    } else {
-            color = 'black';
+        color = 'white';
+    } else if (key.className == 'blackKey') {
+        color = 'black';
+    }
+    down = false;
+    if (key.className == "pressed") {
+        key.classList.remove("pressed");
+        key.classList.add("unpressed");
     }
     key.style.backgroundColor = color;
+}
+
+function mouseDownHandler(ev) {
+    mouse = document.getElementById(ev.target.id);
+    playPitch(mouse.freq);
 }
 
 function playPitch(pitch) {
