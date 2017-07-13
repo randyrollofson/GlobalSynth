@@ -1,7 +1,10 @@
 # GlobalSynth
 Copyright © 2017 Randy Rollofson
 
-GlobalSynth is a synthesizer built with JavaScript and uses the Web Audio API. The synth runs completely inside the web browser (Chrome is recommended), no additional software is required. 
+GlobalSynth is a synthesizer written in JavaScript and uses the Web Audio API. The synth runs completely inside the web browser (Chrome is recommended), no additional software is required. 
+
+## How To Use
+Run index.html and GlobalSynth will open in a new browser tab.
 
 **Update:**
 GlobalSynth is currently playable with computer keys "awsedftgyhujkolp;'" which correspond to pitchs C3-F4.
