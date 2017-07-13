@@ -8,13 +8,15 @@ Run `index.html` and GlobalSynth will open in a new browser tab.
 
 ## Status
 ### Done
-* 2 octave keyboard GUI built.
-* Basic oscillator->gain path established.
+* 2 octave keyboard GUI.
+* Basic oscillator->gain signal path.
 * Playable via computer keys "awsedftgyhujkolp" which correspond to pitchs C3-F4.
 * Monophonic functionality.
 ### To Do
 * Add polyphonic functionality.
-* Add osc, filter, envelope, and gain controlls to GUI.
+* Add additional oscilator, filter, and gain nodes to signal path.
+* Create master gain node.
+* Add oscillator, filter, envelope, and gain controls to GUI.
 * Add MIDI keyboard functionality.
 
 ## License
