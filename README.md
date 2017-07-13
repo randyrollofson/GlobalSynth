@@ -7,8 +7,15 @@ GlobalSynth is a synthesizer written in JavaScript and uses the Web Audio API. T
 Run `index.html` and GlobalSynth will open in a new browser tab.
 
 ## Status
-GlobalSynth is currently playable with computer keys "awsedftgyhujkolp;'" which correspond to pitchs C3-F4.
-The synth is currently monophonic but I am currently working on making it polyphonic. I also plan on making the synth playable via MIDI keyboard controller. Future plans also include adding on to the keyboard gui, making it look more like an actual instrument by adding oscillator, filter, envelope, and gain controls.
+### Done
+* 2 octave keyboard GUI built.
+* Basic oscillator->gain path established.
+* Playable via computer keys "awsedftgyhujkolp" which correspond to pitchs C3-F4.
+* Monophonic functionality.
+### To Do
+* Add polyphonic functionality.
+* Add osc, filter, envelope, and gain controlls to GUI.
+* Add MIDI keyboard functionality.
 
 ## License
 This program is licensed under the "MIT License". Please see the file COPYING in the source distribution of this software for license terms.
