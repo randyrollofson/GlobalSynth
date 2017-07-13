@@ -15,6 +15,7 @@ GlobalSynth is a synthesizer written in JavaScript and uses the Web Audio API. T
 * Monophonic functionality.
 ### To Do
 * Add polyphonic functionality.
+* Add octave up/down functionality.
 * Add additional oscilator, filter, and gain nodes to signal path.
 * Create master gain node.
 * Add oscillator, filter, envelope, and gain controls to GUI.
