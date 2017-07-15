@@ -5,17 +5,60 @@
 *   distribution of this software for license terms.
 */
 
+body {
+    background-color: #DCDCDC;
+}
+
+h1 {
+    position:absolute;
+    top:0px;
+    left:20px;
+    width: 21%;
+    font-family: "Bookman";
+    color:white;
+}
+
+#synthBody {
+    position:relative;
+    left:50px;
+    width:930px;
+    height:397px;
+    background:#2c333a;
+}
+
+#leftSide {
+    position:absolute;
+    top:8px;
+    width:50px;
+    height:700px;
+    background:#A0522D;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+#rightSide {
+    position:absolute;
+    top:8px;
+    left:988px;
+    width:50px;
+    height:700px;
+    background:#A0522D;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
 #keyboard {
     position:absolute;
-    left:100px;
-    width:630px;
-    height:242px;
+    top:405px;
+    left:58px;
+    width:930px;
+    height:302px;
 }
 /* White Keys */
 #C3 {
     position:absolute;
-    width:40px;
-    height:240px;
+    width:60px;
+    height:300px;
     border:1px solid #000;
     background:white;
     border-bottom-right-radius: 5px;
@@ -24,9 +67,9 @@
 
 #D3 {
     position:absolute;
-    left:42px;
-    width:40px;
-    height:240px;
+    left:62px;
+    width:60px;
+    height:300px;
     border:1px solid #000;
     background:white;
     border-bottom-right-radius: 5px;
@@ -35,9 +78,9 @@
 
 #E3 {
     position:absolute;
-    left:84px;
-    width:40px;
-    height:240px;
+    left:124px;
+    width:60px;
+    height:300px;
     border:1px solid #000;
     background:white;
     border-bottom-right-radius: 5px;
@@ -46,9 +89,9 @@
 
 #F3 {
     position:absolute;
-    left:126px;
-    width:40px;
-    height:240px;
+    left:186px;
+    width:60px;
+    height:300px;
     border:1px solid #000;
     background:white;
     border-bottom-right-radius: 5px;
@@ -58,9 +101,9 @@
 
 #G3 {
     position:absolute;
-    left:168px;
-    width:40px;
-    height:240px;
+    left:248px;
+    width:60px;
+    height:300px;
     border:1px solid #000;
     background:white;
     border-bottom-right-radius: 5px;
@@ -69,9 +112,9 @@
 
 #A3 {
     position:absolute;
-    left:210px;
-    width:40px;
-    height:240px;
+    left:310px;
+    width:60px;
+    height:300px;
     border:1px solid #000;
     background:white;
     border-bottom-right-radius: 5px;
@@ -80,9 +123,9 @@
 
 #B3 {
     position:absolute;
-    left:252px;
-    width:40px;
-    height:240px;
+    left:372px;
+    width:60px;
+    height:300px;
     border:1px solid #000;
     background:white;
     border-bottom-right-radius: 5px;
@@ -91,9 +134,9 @@
 
 #C4 {
     position:absolute;
-    left:294px;
-    width:40px;
-    height:240px;
+    left:434px;
+    width:60px;
+    height:300px;
     border:1px solid #000;
     background:white;
     border-bottom-right-radius: 5px;
@@ -102,9 +145,9 @@
 
 #D4 {
     position:absolute;
-    left:336px;
-    width:40px;
-    height:240px;
+    left:496px;
+    width:60px;
+    height:300px;
     border:1px solid #000;
     background:white;
     border-bottom-right-radius: 5px;
@@ -113,9 +156,9 @@
 
 #E4 {
     position:absolute;
-    left:378px;
-    width:40px;
-    height:240px;
+    left:558px;
+    width:60px;
+    height:300px;
     border:1px solid #000;
     background:white;
     border-bottom-right-radius: 5px;
@@ -124,9 +167,9 @@
 
 #F4 {
     position:absolute;
-    left:420px;
-    width:40px;
-    height:240px;
+    left:620px;
+    width:60px;
+    height:300px;
     border:1px solid #000;
     background:white;
     border-bottom-right-radius: 5px;
@@ -135,9 +178,9 @@
 
 #G4 {
     position:absolute;
-    left:462px;
-    width:40px;
-    height:240px;
+    left:682px;
+    width:60px;
+    height:300px;
     border:1px solid #000;
     background:white;
     border-bottom-right-radius: 5px;
@@ -146,9 +189,9 @@
 
 #A4 {
     position:absolute;
-    left:504px;
-    width:40px;
-    height:240px;
+    left:744px;
+    width:60px;
+    height:300px;
     border:1px solid #000;
     background:white;
     border-bottom-right-radius: 5px;
@@ -157,9 +200,9 @@
 
 #B4 {
      position:absolute;
-     left:546px;
-     width:40px;
-     height:240px;
+     left:806px;
+     width:60px;
+     height:300px;
      border:1px solid #000;
      background:white;
      border-bottom-right-radius: 5px;
@@ -168,9 +211,9 @@
 
 #C5 {
     position:absolute;
-    left:588px;
-    width:40px;
-    height:240px;
+    left:868px;
+    width:60px;
+    height:300px;
     border:1px solid #000;
     background:white;
     border-bottom-right-radius: 5px;
@@ -180,9 +223,9 @@
 /* Black Keys */
 #CSharp3 {
     position:absolute;
-    left:26px;
-    width:26px;
-    height:150px;
+    left:40px;
+    width:35px;
+    height:180px;
     background:black;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
@@ -190,9 +233,9 @@
 
 #DSharp3 {
     position:absolute;
-    left:74px;
-    width:26px;
-    height:150px;
+    left:112px;
+    width:35px;
+    height:180px;
     background:black;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
@@ -200,9 +243,9 @@
 
 #FSharp3 {
     position:absolute;
-    left:152px;
-    width:26px;
-    height:150px;
+    left:226px;
+    width:35px;
+    height:180px;
     background:black;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
@@ -210,9 +253,9 @@
 
 #GSharp3 {
     position:absolute;
-    left:198px;
-    width:26px;
-    height:150px;
+    left:292px;
+    width:35px;
+    height:180px;
     background:black;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
@@ -220,9 +263,9 @@
 
 #ASharp3 {
     position:absolute;
-    left:242px;
-    width:26px;
-    height:150px;
+    left:358px;
+    width:35px;
+    height:180px;
     background:black;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
@@ -230,9 +273,9 @@
 
 #CSharp4 {
     position:absolute;
-    left:320px;
-    width:26px;
-    height:150px;
+    left:474px;
+    width:35px;
+    height:180px;
     background:black;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
@@ -240,9 +283,9 @@
 
 #DSharp4 {
     position:absolute;
-    left:368px;
-    width:26px;
-    height:150px;
+    left:544px;
+    width:35px;
+    height:180px;
     background:black;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
@@ -250,9 +293,9 @@
 
 #FSharp4 {
     position:absolute;
-    left:446px;
-    width:26px;
-    height:150px;
+    left:660px;
+    width:35px;
+    height:180px;
     background:black;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
@@ -260,9 +303,9 @@
 
 #GSharp4 {
     position:absolute;
-    left:492px;
-    width:26px;
-    height:150px;
+    left:726px;
+    width:35px;
+    height:180px;
     background:black;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
@@ -270,9 +313,9 @@
 
 #ASharp4 {
     position:absolute;
-    left:536px;
-    width:26px;
-    height:150px;
+    left:792px;
+    width:35px;
+    height:180px;
     background:black;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
