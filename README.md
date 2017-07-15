@@ -13,9 +13,8 @@ This is a work in progress and is playable via the computer keyboard.
 * 2 octave keyboard GUI.
 * Basic oscillator->gain signal path.
 * Playable via computer keys `awsedftgyhujkol;'` which correspond to pitchs C3-F4.
-* Monophonic functionality.
+* Polyphonic functionality.
 ### To Do
-* Add polyphonic functionality.
 * Add octave up/down functionality.
 * Add additional oscilator, filter, and gain nodes to signal path.
 * Create master gain node.
