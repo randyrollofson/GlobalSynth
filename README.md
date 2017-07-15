@@ -11,7 +11,7 @@ This is a work in progress and is playable via the computer keyboard.
 ## Status
 ### Done
 * 2 octave keyboard GUI.
-* Basic oscillator->gain signal path.
+* Basic oscillator->filter->gain signal path.
 * Playable via computer keyboard.
 * Polyphonic functionality.
 ### To Do
