@@ -1,20 +1,17 @@
 /*  Copyright © 2017 Randy Rollofson
-    ALL RIGHTS RESERVED
-    [This program is licensed under the "MIT License"]
-    Please see the file COPYING in the source
-    distribution of this software for license terms.
+*   ALL RIGHTS RESERVED
+*   [This program is licensed under the "MIT License"]
+*   Please see the file COPYING in the source
+*   distribution of this software for license terms.
 */
 
 var context = new (window.AudioContext || window.webkitAudioContext)();
 window.addEventListener('keydown', keyDownHandler, false);
 window.addEventListener('keyup', keyUpHandler, false);
+
+var osc = new Array(32);
 //window.addEventListener('mousedown', mouseDownHandler, false);
 //window.addEventListener('mouseup', mouseUpHandler, false);
-//var source = context.createMediaStreamSource(stream);
-var osc;
-var key;
-var mouse;
-var down = false;
 
 var filter = context.createBiquadFilter();
 filter.type = "lowpass";
@@ -24,80 +21,98 @@ filter.gain.value = 0;
 
 var gain = context.createGain();
 gain.gain.value = 0.5;
-gain.connect(context.destination);
+
 
 //Key objects
 var C3 = {
     id:"C3",
-    freq:130.81
+    freq:130.81,
+    oscIdx:0
 };
 var CSharp3 = {
     id:"CSharp3",
-    freq:138.59
+    freq:138.59,
+    oscIdx:1
 };
 var D3 = {
     id:"D3",
-    freq:146.83
+    freq:146.83,
+    oscIdx:2
 };
 var DSharp3 = {
     id:"DSharp3",
-    freq:155.56
+    freq:155.56,
+    oscIdx:3
 };
 var E3 = {
     id:"E3",
-    freq:164.81
+    freq:164.81,
+    oscIdx:4
 };
 var F3 = {
     id:"F3",
-    freq:174.61
+    freq:174.61,
+    oscIdx:5
 };
 var FSharp3 = {
     id:"FSharp3",
-    freq:185.00
+    freq:185.00,
+    oscIdx:6
 };
 var G3 = {
     id:"G3",
-    freq:196.00
+    freq:196.00,
+    oscIdx:7
 };
 var GSharp3 = {
     id:"GSharp3",
-    freq:207.65
+    freq:207.65,
+    oscIdx:8
 };
 var A3 = {
     id:"A3",
-    freq:220.00
+    freq:220.00,
+    oscIdx:9
 };
 var ASharp3 = {
     id:"ASharp3",
-    freq:233.08
+    freq:233.08,
+    oscIdx:10
 };
 var B3 = {
     id:"B3",
-    freq:246.94
+    freq:246.94,
+    oscIdx:11
 };
 var C4 = {
     id:"C4",
-    freq:261.63
+    freq:261.63,
+    oscIdx:12
 };
 var CSharp4 = {
     id:"CSharp4",
-    freq:277.18
+    freq:277.18,
+    oscIdx:13
 };
 var D4 = {
     id:"D4",
-    freq:293.66
+    freq:293.66,
+    oscIdx:14
 };
 var DSharp4 = {
     id:"DSharp4",
-    freq:311.13
+    freq:311.13,
+    oscIdx:15
 };
 var E4 = {
     id:"E4",
-    freq:329.63
+    freq:329.63,
+    oscIdx:16
 };
 var F4 = {
     id:"F4",
-    freq:349.23
+    freq:349.23,
+    oscIdx:17
 };
 /*
 var FSharp4 = {
@@ -130,7 +145,7 @@ var C5 = {
 };
 */
 
-var keys = new Array(128);
+var keys = new Array(256);
 keys[65] = C3;
 keys[87] = CSharp3;
 keys[83] = D3;
@@ -154,57 +169,49 @@ keys[222] = F4;
 //keys[220] = GSharp4;
 
 function keyDownHandler(ev) {
-    key = document.getElementById(keys[ev.keyCode].id);
-    key.style.backgroundColor='lightgrey';
-    if(down)
+    var keyDown = document.getElementById(keys[ev.keyCode].id);
+    keyDown.style.backgroundColor='lightgrey';
+    if (keyDown.classList.contains("down"))
         return;
-    down = true;
-    if (key.className == "unpressed") {
-        key.classList.remove("unpressed");
-        key.classList.add("pressed");
-    }
-    playPitch(keys[ev.keyCode].freq);
+    keyDown.classList.remove("up");
+    keyDown.classList.add("down");
+    playPitch(keys[ev.keyCode]);
 }
 
 function keyUpHandler(ev) {
-    stopPitch();
-    key = document.getElementById(keys[ev.keyCode].id);
-    if (key.className == 'whiteKey') {
+    var keyUp = document.getElementById(keys[ev.keyCode].id);
+    if (keyUp.classList.contains("up"))
+        return;
+    stopPitch(keys[ev.keyCode]);
+    keyUp.classList.remove("down");
+    keyUp.classList.add("up");
+    if (keyUp.classList.contains('whiteKey')) {
         color = 'white';
-    } else if (key.className == 'blackKey') {
+    } else if (keyUp.classList.contains('blackKey')) {
         color = 'black';
     }
-    down = false;
-    if (key.className == "pressed") {
-        key.classList.remove("pressed");
-        key.classList.add("unpressed");
-    }
-    key.style.backgroundColor = color;
+    keyUp.style.backgroundColor = color;
 }
-
+/*
 function mouseDownHandler(ev) {
     mouse = document.getElementById(ev.target.id);
     playPitch(mouse.freq);
 }
+*/
 
-function playPitch(pitch) {
-    osc = context.createOscillator();
-    osc.connect(context.destination);
-    osc.type = "sawtooth";
-    osc.frequency.value = pitch;
-    osc.start();
+function playPitch(key) {
+    osc[key.oscIdx] = context.createOscillator();
+    osc[key.oscIdx].type = "sawtooth";
+    osc[key.oscIdx].frequency.value = key.freq;
+    osc[key.oscIdx].connect(filter);
+    filter.connect(gain);
+    gain.connect(context.destination);
+    osc[key.oscIdx].start();
 }
 
-function stopPitch() {
-    osc.stop(0);
-    osc.disconnect();
+function stopPitch(key) {
+    osc[key.oscIdx].stop(0);
 }
-
-function changeColor(newColor) {
-    var keyDown = document.getElementById("D3");
-    keyDown.color = newColor;
-}
-
 
 //var analyser = context.createAnalyser();
 
