@@ -22,7 +22,6 @@ filter.gain.value = 0;
 var gain = context.createGain();
 gain.gain.value = 0.5;
 
-
 //Key objects
 var C3 = {
     id:"C3",
@@ -114,59 +113,73 @@ var F4 = {
     freq:349.23,
     oscIdx:17
 };
-/*
+
 var FSharp4 = {
     id:"FSharp4",
-    freq:369.99
+    freq:369.99,
+    oscIdx:18
 };
 var G4 = {
     id:"G4",
-    freq:392.00
+    freq:392.00,
+    oscIdx:19
 };
 var GSharp4 = {
     id:"GSharp4",
-    freq:415.30
+    freq:415.30,
+    oscIdx:20
 };
 var A4 = {
     id:"A4",
-    freq:440.00;
+    freq:440.00,
+    oscIdx:21
 };
 var ASharp4 = {
     id:"ASharp4",
-    freq:466.16
+    freq:466.16,
+    oscIdx:22
 };
 var B4 = {
     id:"B4",
-    freq:493.88
+    freq:493.88,
+    oscIdx:23
 };
 var C5 = {
     id:"C5",
-    freq:523.25
+    freq:523.25,
+    oscIdx:24
 };
-*/
 
-var keys = new Array(256);
-keys[65] = C3;
-keys[87] = CSharp3;
-keys[83] = D3;
-keys[69] = DSharp3;
-keys[68] = E3;
-keys[70] = F3;
-keys[84] = FSharp3;
-keys[71] = G3;
-keys[89] = GSharp3;
-keys[72] = A3;
-keys[85] = ASharp3;
-keys[74] = B3;
-keys[75] = C4;
-keys[79] = CSharp4;
-keys[76] = D4;
-keys[80] = DSharp4;
-keys[186] = E4;
-keys[222] = F4;
-//keys[221] = FSharp4;
-//keys[13] = G4;
-//keys[220] = GSharp4;
+var keys = new Array(128);
+
+//Lower octave
+keys[90] = C3;
+keys[83] = CSharp3;
+keys[88] = D3;
+keys[68] = DSharp3;
+keys[67] = E3;
+keys[86] = F3;
+keys[71] = FSharp3;
+keys[66] = G3;
+keys[72] = GSharp3;
+keys[78] = A3;
+keys[74] = ASharp3;
+keys[77] = B3;
+
+//Upper octave
+keys[81] = C4;
+keys[50] = CSharp4;
+keys[87] = D4;
+keys[51] = DSharp4;
+keys[69] = E4;
+keys[82] = F4;
+keys[53] = FSharp4;
+keys[84] = G4;
+keys[54] = GSharp4;
+keys[89] = A4;
+keys[55] = ASharp4;
+keys[85] = B4;
+keys[73] = C5;
 
 function keyDownHandler(ev) {
     var keyDown = document.getElementById(keys[ev.keyCode].id);
