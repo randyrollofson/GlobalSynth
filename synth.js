@@ -8,19 +8,37 @@
 var context = new (window.AudioContext || window.webkitAudioContext)();
 window.addEventListener('keydown', keyDownHandler, false);
 window.addEventListener('keyup', keyUpHandler, false);
-
-var osc = new Array(32);
 //window.addEventListener('mousedown', mouseDownHandler, false);
 //window.addEventListener('mouseup', mouseUpHandler, false);
 
-var filter = context.createBiquadFilter();
-filter.type = "lowpass";
-filter.frequency.value = 500;
-filter.Q.value = 0;
-filter.gain.value = 0;
+var osc1 = new Array(32);
+var osc2 = new Array(32);
 
-var gain = context.createGain();
-gain.gain.value = 0.5;
+//OSC 1 Lowpass Filter
+var lowpass1 = context.createBiquadFilter();
+lowpass1.type = "lowpass";
+lowpass1.frequency.value = 1000;
+lowpass1.Q.value = 0;
+lowpass1.gain.value = 0;
+
+//OSC 2 Lowpass Filter
+var lowpass2 = context.createBiquadFilter();
+lowpass2.type = "lowpass";
+lowpass2.frequency.value = 5000;
+lowpass2.Q.value = 0;
+lowpass2.gain.value = 0;
+
+//OSC 1 Volume
+var osc1Vol = context.createGain();
+osc1Vol.gain.value = 0.5;
+
+//OSC 2 Volume
+var osc2Vol = context.createGain();
+osc2Vol.gain.value = 0.5;
+
+//Master Volume
+var masterVol = context.createGain();
+masterVol.gain.value = 0.5;
 
 //Key objects
 var C3 = {
@@ -213,17 +231,36 @@ function mouseDownHandler(ev) {
 */
 
 function playPitch(key) {
-    osc[key.oscIdx] = context.createOscillator();
-    osc[key.oscIdx].type = "sawtooth";
-    osc[key.oscIdx].frequency.value = key.freq;
-    osc[key.oscIdx].connect(filter);
-    filter.connect(gain);
-    gain.connect(context.destination);
-    osc[key.oscIdx].start();
+    var osc1Waveform = document.getElementById('osc1Waveform');
+    var osc2Waveform = document.getElementById('osc2Waveform');
+    var wave1 = osc1Waveform.options[osc1Waveform.selectedIndex].value;
+    var wave2 = osc2Waveform.options[osc2Waveform.selectedIndex].value;
+
+    //OSC 1
+    osc1[key.oscIdx] = context.createOscillator();
+    osc1[key.oscIdx].type = wave1;
+    osc1[key.oscIdx].frequency.value = key.freq;
+    osc1[key.oscIdx].connect(osc1Vol);
+    osc1Vol.connect(lowpass1);
+    lowpass1.connect(masterVol);
+
+    //OSC 2
+    osc2[key.oscIdx] = context.createOscillator();
+    osc2[key.oscIdx].type = wave2;
+    osc2[key.oscIdx].frequency.value = key.freq;
+    osc2[key.oscIdx].connect(osc2Vol);
+    osc2Vol.connect(lowpass2);
+    lowpass2.connect(masterVol);
+
+    masterVol.connect(context.destination);
+
+    osc1[key.oscIdx].start();
+    osc2[key.oscIdx].start();
 }
 
 function stopPitch(key) {
-    osc[key.oscIdx].stop(0);
+    osc1[key.oscIdx].stop(0);
+    osc2[key.oscIdx].stop(0);
 }
 
 //var analyser = context.createAnalyser();
