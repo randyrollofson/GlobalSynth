@@ -17,14 +17,9 @@
 <body>
     <div id="synthBody">
         <h1>GlobalSynth</h1>
-
     </div>
-    <div id="leftSide">
-
-    </div>
-    <div id="rightSide">
-
-    </div>
+    <div id="leftSide"></div>
+    <div id="rightSide"></div>
     <div id="keyboard">
         <div class="whiteKey up" id="C3"></div>
         <div class="whiteKey up" id="D3"></div>
@@ -52,5 +47,24 @@
         <div class="blackKey up" id="GSharp4"></div>
         <div class="blackKey up" id="ASharp4"></div>
    </div>
+    <div id="osc1">
+        <p>OSC 1</p>
+        <select id="osc1Waveform">
+            <option value="sine" selected>Sine</option>
+            <option value="square">Square</option>
+            <option value="sawtooth">Saw</option>
+            <option value="triangle">Triangle</option>
+        </select>
+    </div>
+    <div id="osc2">
+        <p>OSC 2</p>
+        <select id="osc2Waveform">
+            <option value="sine">Sine</option>
+            <option value="square">Square</option>
+            <option value="sawtooth" selected>Saw</option>
+            <option value="triangle">Triangle</option>
+        </select>
+    </div>
+
 </body>
 </html>
