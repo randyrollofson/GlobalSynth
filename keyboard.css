@@ -9,6 +9,21 @@ body {
     background-color: #DCDCDC;
 }
 
+select {
+    background: transparent;
+    width: 100px;
+    height: 40px;
+    font-family: "Bookman";
+    font-size: 14px;
+    border: 1px solid #00CED1;
+    text-align: center;
+    text-align-last: center;
+}
+
+select:hover {
+    background-color: grey;
+}
+
 #lfoBorder {
     position: absolute;
     top: 10px;
@@ -88,15 +103,15 @@ body {
 
 #osc1Waveform {
     position:absolute;
-    top:80px;
-    left:60px;
+    top: 65px;
+    left: 50px;
     color:white;
 }
 
 #osc2Waveform {
     position:absolute;
-    top: 80px;
-    left:60px;
+    top: 65px;
+    left: 50px;
     color:white;
 }
 
@@ -159,21 +174,27 @@ envelopeText {
 masterText {
     position:absolute;
     top:10px;
-    left:85px;
+    left:86px;
     font-family: "Bookman";
     color:white;
 }
 
 #mixerKnob1 {
     position: absolute;
-    top: 90px;
-    left: 452px;
+    top: 75px;
+    left: 28px;
 }
 
 #mixerKnob2 {
     position: absolute;
-    top: 220px;
-    left: 452px;
+    top: 214px;
+    left: 28px;
+}
+
+#masterKnob {
+    position: absolute;
+    top: 50px;
+    left: 90px;
 }
 
 #synthBody {
