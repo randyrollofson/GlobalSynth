@@ -27,23 +27,29 @@
         <div id="osc1Border">
             <h3><osc1Text>OSC 1</osc1Text></h3>
             <select id="osc1Waveform">
-                <option value="sine" selected>Sine</option>
-                <option value="square">Square</option>
-                <option value="sawtooth">Saw</option>
-                <option value="triangle">Triangle</option>
+                <option value="sine" selected>SINE</option>
+                <option value="square">SQUARE</option>
+                <option value="sawtooth">SAW</option>
+                <option value="triangle">TRIANGLE</option>
             </select>
         </div>
         <div id="osc2Border">
             <h3><osc2Text>OSC 2</osc2Text></h3>
             <select id="osc2Waveform">
-                <option value="sine">Sine</option>
-                <option value="square">Square</option>
-                <option value="sawtooth" selected>Saw</option>
-                <option value="triangle">Triangle</option>
+                <option class="greenText" value="sine">SINE</option>
+                <option class="greenText" value="square">SQUARE</option>
+                <option class="greenText" value="sawtooth" selected>SAW</option>
+                <option class="greenText" value="triangle">TRIANGLE</option>
             </select>
         </div>
         <div id="mixerBorder">
             <h3><mixerText>MIXER</mixerText></h3>
+            <div id="mixerKnob1">
+                <input type="text" value="10" class="dial">
+            </div>
+            <div id="mixerKnob2">
+                <input type="text" value="10" class="dial">
+            </div>
         </div>
         <div id="filterBorder">
             <h3><filterText>FILTER</filterText></h3>
@@ -53,6 +59,9 @@
         </div>
         <div id="masterBorder">
             <h3><masterText>MASTER</masterText></h3>
+            <div id="masterKnob">
+                <input type="text" value="10" class="dial">
+            </div>
         </div>
     </div>
     <h1><logo>GlobalSynth</logo></h1>
@@ -85,14 +94,6 @@
         <div class="blackKey up" id="GSharp4"></div>
         <div class="blackKey up" id="ASharp4"></div>
    </div>
-    <div id="mix">
-        <div id="mixerKnob1">
-            <input type="text" value="10" class="dial">
-        </div>
-        <div id="mixerKnob2">
-            <input type="text" value="10" class="dial">
-        </div>
-    </div>
 
 </body>
 </html>
