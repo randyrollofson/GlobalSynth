@@ -9,27 +9,171 @@ body {
     background-color: #DCDCDC;
 }
 
-#osc1 {
+#lfoBorder {
+    position: absolute;
+    top: 10px;
+    left:10px;
+    width:130px;
+    height:320px;
+    background:#2c333a;
+    border: 2px solid white;
+    border-radius: 10px;
+}
+
+#osc1Border {
+    position: absolute;
+    top: 10px;
+    left:152px;
+    width:200px;
+    height:154px;
+    background:#2c333a;
+    border: 2px solid white;
+    border-radius: 10px;
+}
+
+#osc2Border {
+    position: absolute;
+    top: 176px;
+    left:152px;
+    width:200px;
+    height:154px;
+    background:#2c333a;
+    border: 2px solid white;
+    border-radius: 10px;
+}
+
+#mixerBorder {
+    position: absolute;
+    top: 10px;
+    left:364px;
+    width:130px;
+    height:320px;
+    background:#2c333a;
+    border: 2px solid white;
+    border-radius: 10px;
+}
+
+#filterBorder {
+    position: absolute;
+    top: 10px;
+    left:506px;
+    width:130px;
+    height:320px;
+    background:#2c333a;
+    border: 2px solid white;
+    border-radius: 10px;
+}
+
+#envelopeBorder {
+    position: absolute;
+    top: 10px;
+    left:648px;
+    width:268px;
+    height:154px;
+    background:#2c333a;
+    border: 2px solid white;
+    border-radius: 10px;
+}
+
+#masterBorder {
+    position: absolute;
+    top: 176px;
+    left:648px;
+    width:268px;
+    height:154px;
+    background:#2c333a;
+    border: 2px solid white;
+    border-radius: 10px;
+}
+
+#osc1Waveform {
     position:absolute;
-    top:100px;
-    left:80px;
+    top:80px;
+    left:60px;
     color:white;
 }
 
-#osc2 {
+#osc2Waveform {
     position:absolute;
-    top:250px;
-    left:80px;
+    top: 80px;
+    left:60px;
     color:white;
 }
 
-h1 {
+logo {
     position:absolute;
-    top:0px;
-    left:20px;
-    width: 21%;
+    top:354px;
+    left:788px;
     font-family: "Bookman";
     color:white;
+}
+
+lfoText {
+    position:absolute;
+    top:10px;
+    left:45px;
+    font-family: "Bookman";
+    color:white;
+}
+
+osc1Text {
+    position:absolute;
+    top:10px;
+    left:70px;
+    font-family: "Bookman";
+    color:white;
+}
+
+osc2Text {
+    position:absolute;
+    top:10px;
+    left:70px;
+    font-family: "Bookman";
+    color:white;
+}
+
+mixerText {
+    position:absolute;
+    top:10px;
+    left:34px;
+    font-family: "Bookman";
+    color:white;
+}
+
+filterText {
+    position:absolute;
+    top:10px;
+    left:30px;
+    font-family: "Bookman";
+    color:white;
+}
+
+envelopeText {
+    position:absolute;
+    top:10px;
+    left:78px;
+    font-family: "Bookman";
+    color:white;
+}
+
+masterText {
+    position:absolute;
+    top:10px;
+    left:85px;
+    font-family: "Bookman";
+    color:white;
+}
+
+#mixerKnob1 {
+    position: absolute;
+    top: 90px;
+    left: 452px;
+}
+
+#mixerKnob2 {
+    position: absolute;
+    top: 220px;
+    left: 452px;
 }
 
 #synthBody {

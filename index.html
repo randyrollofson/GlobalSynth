@@ -11,13 +11,51 @@
 	<meta charset="utf‐8">
 	<title> GlobalSynth </title> 	
     <link rel="stylesheet" type="text/css" href="keyboard.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!--Used from this github repo (MIT license): https://github.com/aterrien/jQuery-Knob/blob/master/js/jquery.knob.js-->
+    <script src="https://cdn.rawgit.com/aterrien/jQuery-Knob/755309e9/js/jquery.knob.js"></script>
+
 	<script src="synth.js"></script>
+    <script src="knobs.js"></script>
 </head>
 <body>
     <div id="synthBody">
-        <h1>GlobalSynth</h1>
+        <div id="lfoBorder">
+            <h3><lfoText>LFO</lfoText></h3>
+        </div>
+        <div id="osc1Border">
+            <h3><osc1Text>OSC 1</osc1Text></h3>
+            <select id="osc1Waveform">
+                <option value="sine" selected>Sine</option>
+                <option value="square">Square</option>
+                <option value="sawtooth">Saw</option>
+                <option value="triangle">Triangle</option>
+            </select>
+        </div>
+        <div id="osc2Border">
+            <h3><osc2Text>OSC 2</osc2Text></h3>
+            <select id="osc2Waveform">
+                <option value="sine">Sine</option>
+                <option value="square">Square</option>
+                <option value="sawtooth" selected>Saw</option>
+                <option value="triangle">Triangle</option>
+            </select>
+        </div>
+        <div id="mixerBorder">
+            <h3><mixerText>MIXER</mixerText></h3>
+        </div>
+        <div id="filterBorder">
+            <h3><filterText>FILTER</filterText></h3>
+        </div>
+        <div id="envelopeBorder">
+            <h3><envelopeText>ENVELOPE</envelopeText></h3>
+        </div>
+        <div id="masterBorder">
+            <h3><masterText>MASTER</masterText></h3>
+        </div>
     </div>
+    <h1><logo>GlobalSynth</logo></h1>
     <div id="leftSide"></div>
     <div id="rightSide"></div>
     <div id="keyboard">
@@ -47,23 +85,13 @@
         <div class="blackKey up" id="GSharp4"></div>
         <div class="blackKey up" id="ASharp4"></div>
    </div>
-    <div id="osc1">
-        <p>OSC 1</p>
-        <select id="osc1Waveform">
-            <option value="sine" selected>Sine</option>
-            <option value="square">Square</option>
-            <option value="sawtooth">Saw</option>
-            <option value="triangle">Triangle</option>
-        </select>
-    </div>
-    <div id="osc2">
-        <p>OSC 2</p>
-        <select id="osc2Waveform">
-            <option value="sine">Sine</option>
-            <option value="square">Square</option>
-            <option value="sawtooth" selected>Saw</option>
-            <option value="triangle">Triangle</option>
-        </select>
+    <div id="mix">
+        <div id="mixerKnob1">
+            <input type="text" value="10" class="dial">
+        </div>
+        <div id="mixerKnob2">
+            <input type="text" value="10" class="dial">
+        </div>
     </div>
 
 </body>
