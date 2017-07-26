@@ -13,7 +13,8 @@
     <link rel="stylesheet" type="text/css" href="keyboard.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <!--Used from this github repo (MIT license): https://github.com/aterrien/jQuery-Knob/blob/master/js/jquery.knob.js-->
+    <!--Knob functionality used from this github repo (MIT license):
+    https://github.com/aterrien/jQuery-Knob/blob/master/js/jquery.knob.js-->
     <script src="https://cdn.rawgit.com/aterrien/jQuery-Knob/755309e9/js/jquery.knob.js"></script>
 
 	<script src="synth.js"></script>
@@ -44,11 +45,11 @@
         </div>
         <div id="mixerBorder">
             <h3><mixerText>MIXER</mixerText></h3>
-            <div id="mixerKnob1">
-                <input type="text" value="10" class="dial">
+            <div id="osc1VolKnob">
+                <input type="text" value="50" class="volumeKnob" id="osc1Knob">
             </div>
-            <div id="mixerKnob2">
-                <input type="text" value="10" class="dial">
+            <div id="osc2VolKnob">
+                <input type="text" value="50" class="volumeKnob" id="osc2Knob">
             </div>
         </div>
         <div id="filterBorder">
@@ -59,8 +60,8 @@
         </div>
         <div id="masterBorder">
             <h3><masterText>MASTER</masterText></h3>
-            <div id="masterKnob">
-                <input type="text" value="10" class="dial">
+            <div id="masterVolKnob">
+                <input type="text" value="75" class="volumeKnob" id="masterKnob">
             </div>
         </div>
     </div>
