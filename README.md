@@ -15,6 +15,7 @@ This is a work in progress and is playable via the computer keyboard.
 * Playable via computer keyboard.
 * Polyphonic functionality.
 * Created master gain node.
+* Selectable oscillator dropdowns.
 
 ### To Do
 * Add octave up/down functionality.
