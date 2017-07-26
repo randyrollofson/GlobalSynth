@@ -179,19 +179,19 @@ masterText {
     color:white;
 }
 
-#mixerKnob1 {
+#osc1VolKnob {
     position: absolute;
     top: 75px;
     left: 28px;
 }
 
-#mixerKnob2 {
+#osc2VolKnob {
     position: absolute;
     top: 214px;
     left: 28px;
 }
 
-#masterKnob {
+#masterVolKnob {
     position: absolute;
     top: 50px;
     left: 90px;
