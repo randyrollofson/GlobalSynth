@@ -30,15 +30,15 @@ lowpass2.gain.value = 0;
 
 //OSC 1 Volume
 var osc1Vol = context.createGain();
-osc1Vol.gain.value = 0.5;
+var osc1Gain = 0.5;
 
 //OSC 2 Volume
 var osc2Vol = context.createGain();
-osc2Vol.gain.value = 0.5;
+var osc2Gain = 0.5;
 
 //Master Volume
 var masterVol = context.createGain();
-masterVol.gain.value = 0.5;
+var masterGain = 0.5;
 
 //Key objects
 var C3 = {
@@ -230,6 +230,19 @@ function mouseDownHandler(ev) {
 }
 */
 
+function setOsc1Volume(value) {
+    osc1Gain = value * 0.01;
+}
+
+function setOsc2Volume(value) {
+    osc2Gain = value * 0.01;
+}
+
+function setMasterVolume(value) {
+    masterGain = value * 0.01;
+}
+
+
 function playPitch(key) {
     var osc1Waveform = document.getElementById('osc1Waveform');
     var osc2Waveform = document.getElementById('osc2Waveform');
@@ -240,6 +253,7 @@ function playPitch(key) {
     osc1[key.oscIdx] = context.createOscillator();
     osc1[key.oscIdx].type = wave1;
     osc1[key.oscIdx].frequency.value = key.freq;
+    osc1Vol.gain.value = osc1Gain;
     osc1[key.oscIdx].connect(osc1Vol);
     osc1Vol.connect(lowpass1);
     lowpass1.connect(masterVol);
@@ -248,10 +262,12 @@ function playPitch(key) {
     osc2[key.oscIdx] = context.createOscillator();
     osc2[key.oscIdx].type = wave2;
     osc2[key.oscIdx].frequency.value = key.freq;
+    osc2Vol.gain.value = osc2Gain;
     osc2[key.oscIdx].connect(osc2Vol);
     osc2Vol.connect(lowpass2);
     lowpass2.connect(masterVol);
 
+    masterVol.gain.value = masterGain;
     masterVol.connect(context.destination);
 
     osc1[key.oscIdx].start();
