@@ -24,6 +24,15 @@
     <div id="synthBody">
         <div id="lfoBorder">
             <h3><lfoText>LFO</lfoText></h3>
+            <select id="lfoWaveform">
+                <option value="sine" selected>SINE</option>
+                <option value="square">SQUARE</option>
+                <option value="sawtooth">SAW</option>
+                <option value="triangle">TRIANGLE</option>
+            </select>
+            <div id="lfoFreqKnob">
+                <input type="text" value="0.0" class="lfoKnob" id="lfoFreq">
+            </div>
         </div>
         <div id="osc1Border">
             <h3><osc1Text>OSC 1</osc1Text></h3>
@@ -54,6 +63,12 @@
         </div>
         <div id="filterBorder">
             <h3><filterText>FILTER</filterText></h3>
+            <div id="osc1CutoffKnob">
+                <input type="text" value="3000" class="cutoffKnob" id="osc1Cutoff">
+            </div>
+            <div id="osc2CutoffKnob">
+                <input type="text" value="3000" class="cutoffKnob" id="osc2Cutoff">
+            </div>
         </div>
         <div id="envelopeBorder">
             <h3><envelopeText>ENVELOPE</envelopeText></h3>

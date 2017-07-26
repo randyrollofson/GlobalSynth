@@ -14,17 +14,21 @@ window.addEventListener('keyup', keyUpHandler, false);
 var osc1 = new Array(32);
 var osc2 = new Array(32);
 
+//LFO
+var lfo = new Array(32);
+var lfoFreq = 0;
+
 //OSC 1 Lowpass Filter
 var lowpass1 = context.createBiquadFilter();
+var osc1CutoffFreq = 10000;
 lowpass1.type = "lowpass";
-lowpass1.frequency.value = 1000;
 lowpass1.Q.value = 0;
 lowpass1.gain.value = 0;
 
 //OSC 2 Lowpass Filter
 var lowpass2 = context.createBiquadFilter();
+var osc2CutoffFreq = 10000;
 lowpass2.type = "lowpass";
-lowpass2.frequency.value = 5000;
 lowpass2.Q.value = 0;
 lowpass2.gain.value = 0;
 
@@ -38,7 +42,7 @@ var osc2Gain = 0.5;
 
 //Master Volume
 var masterVol = context.createGain();
-var masterGain = 0.5;
+var masterGain = 0.75;
 
 //Key objects
 var C3 = {
@@ -242,18 +246,38 @@ function setMasterVolume(value) {
     masterGain = value * 0.01;
 }
 
+function setOsc1Cutoff(value) {
+    osc1CutoffFreq = value;
+}
+
+function setOsc2Cutoff(value) {
+    osc2CutoffFreq = value;
+}
+
+function setLfoFreq(value) {
+    lfoFreq = value;
+}
 
 function playPitch(key) {
     var osc1Waveform = document.getElementById('osc1Waveform');
     var osc2Waveform = document.getElementById('osc2Waveform');
+    var lfoWaveform = document.getElementById('lfoWaveform');
+    var lfoWave = lfoWaveform.options[lfoWaveform.selectedIndex].value;
     var wave1 = osc1Waveform.options[osc1Waveform.selectedIndex].value;
     var wave2 = osc2Waveform.options[osc2Waveform.selectedIndex].value;
+
+    //LFO
+    lfo[key.oscIdx] = context.createOscillator();
+    lfo[key.oscIdx].type = lfoWave;
+    lfo[key.oscIdx].frequency.value = lfoFreq;
+    lfo[key.oscIdx].connect(masterVol.gain);
 
     //OSC 1
     osc1[key.oscIdx] = context.createOscillator();
     osc1[key.oscIdx].type = wave1;
     osc1[key.oscIdx].frequency.value = key.freq;
     osc1Vol.gain.value = osc1Gain;
+    lowpass1.frequency.value = osc1CutoffFreq;
     osc1[key.oscIdx].connect(osc1Vol);
     osc1Vol.connect(lowpass1);
     lowpass1.connect(masterVol);
@@ -263,6 +287,7 @@ function playPitch(key) {
     osc2[key.oscIdx].type = wave2;
     osc2[key.oscIdx].frequency.value = key.freq;
     osc2Vol.gain.value = osc2Gain;
+    lowpass2.frequency.value = osc2CutoffFreq;
     osc2[key.oscIdx].connect(osc2Vol);
     osc2Vol.connect(lowpass2);
     lowpass2.connect(masterVol);
@@ -270,6 +295,7 @@ function playPitch(key) {
     masterVol.gain.value = masterGain;
     masterVol.connect(context.destination);
 
+    lfo[key.oscIdx].start();
     osc1[key.oscIdx].start();
     osc2[key.oscIdx].start();
 }
@@ -277,6 +303,7 @@ function playPitch(key) {
 function stopPitch(key) {
     osc1[key.oscIdx].stop(0);
     osc2[key.oscIdx].stop(0);
+    lfo[key.oscIdx].stop(0);
 }
 
 //var analyser = context.createAnalyser();

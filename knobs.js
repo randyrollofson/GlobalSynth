@@ -59,5 +59,57 @@ $(document).ready(function(){
                 setMasterVolume(v);
             }
         });
+
+    $('#osc1Cutoff').knob(
+        {
+            'min': 0,
+            'max': 10000,
+            'width': 75,
+            'height': 75,
+            'displayInput': true,
+            'fgColor': "#00CED1",
+            'angleArc': 350,
+            'angleOffset': 5,
+            'stopper': true,
+            'release': function (v) {
+                //alert(v);
+                setOsc1Cutoff(v);
+            }
+        });
+
+    $('#osc2Cutoff').knob(
+        {
+            'min': 0,
+            'max': 10000,
+            'width': 75,
+            'height': 75,
+            'displayInput': true,
+            'fgColor': "#00CED1",
+            'angleArc': 350,
+            'angleOffset': 5,
+            'stopper': true,
+            'release': function (v) {
+                //alert(v);
+                setOsc2Cutoff(v);
+            }
+        });
+
+    $('#lfoFreq').knob(
+        {
+            'min': 0,
+            'max': 100,
+            'width': 75,
+            'height': 75,
+            'displayInput': true,
+            'fgColor': "#00CED1",
+            'angleArc': 350,
+            'angleOffset': 5,
+            'step':0.1,
+            'stopper': true,
+            'release': function (v) {
+                //alert(v);
+                setLfoFreq(v);
+            }
+        });
 });
 

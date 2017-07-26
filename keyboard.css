@@ -101,17 +101,24 @@ select:hover {
     border-radius: 10px;
 }
 
+#lfoWaveform {
+    position:absolute;
+    top: 65px;
+    left: 15px;
+    color:white;
+}
+
 #osc1Waveform {
     position:absolute;
     top: 65px;
-    left: 50px;
+    left: 48px;
     color:white;
 }
 
 #osc2Waveform {
     position:absolute;
     top: 65px;
-    left: 50px;
+    left: 48px;
     color:white;
 }
 
@@ -179,6 +186,12 @@ masterText {
     color:white;
 }
 
+#lfoFreqKnob {
+    position: absolute;
+    top: 214px;
+    left: 28px;
+}
+
 #osc1VolKnob {
     position: absolute;
     top: 75px;
@@ -195,6 +208,18 @@ masterText {
     position: absolute;
     top: 50px;
     left: 90px;
+}
+
+#osc1CutoffKnob {
+    position: absolute;
+    top: 75px;
+    left: 28px;
+}
+
+#osc2CutoffKnob {
+    position: absolute;
+    top: 214px;
+    left: 28px;
 }
 
 #synthBody {
