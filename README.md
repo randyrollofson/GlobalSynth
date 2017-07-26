@@ -11,14 +11,17 @@ This is a work in progress and is playable via the computer keyboard.
 ## Status
 ### Done
 * 2 octave keyboard GUI.
-* Basic oscillator->filter->gain signal path.
+* 2 oscillators, each with oscillator->filter->gain signal path.
 * Playable via computer keyboard.
 * Polyphonic functionality.
+* Created master gain node.
+* Selectable oscillator dropdowns.
+
 ### To Do
 * Add octave up/down functionality.
-* Add additional oscilator, filter, and gain nodes to signal path.
-* Create master gain node.
-* Add oscillator, filter, envelope, and gain controls to GUI.
+* Add cutoff filters for both oscillators.
+* Add envelope filter.
+* Add LFO.
 * Add MIDI keyboard functionality.
 
 ## License
