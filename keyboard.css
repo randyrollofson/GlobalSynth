@@ -11,17 +11,32 @@ body {
 
 select {
     background: transparent;
-    width: 100px;
-    height: 40px;
-    font-family: "Bookman";
-    font-size: 14px;
+    width: 90px;
+    height: 30px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px;
     border: 1px solid #00CED1;
-    text-align: center;
     text-align-last: center;
 }
 
 select:hover {
     background-color: grey;
+}
+
+h4 {
+    position: relative;
+    font-family: 'Orbitron', sans-serif;
+    color:white;
+    margin-top: .5em;
+    margin-bottom: .5em;
+}
+
+h5 {
+    position: relative;
+    font-family: 'Orbitron', sans-serif;
+    color:white;
+    margin-top: .5em;
+    margin-bottom: .5em;
 }
 
 #lfoBorder {
@@ -33,193 +48,190 @@ select:hover {
     background:#2c333a;
     border: 2px solid white;
     border-radius: 10px;
+    text-align: center;
 }
 
 #osc1Border {
     position: absolute;
     top: 10px;
     left:152px;
-    width:200px;
+    width:130px;
     height:154px;
     background:#2c333a;
     border: 2px solid white;
     border-radius: 10px;
+    text-align: center;
 }
 
 #osc2Border {
     position: absolute;
     top: 176px;
     left:152px;
-    width:200px;
+    width:130px;
     height:154px;
     background:#2c333a;
     border: 2px solid white;
     border-radius: 10px;
+    text-align: center;
 }
 
 #mixerBorder {
     position: absolute;
     top: 10px;
-    left:364px;
+    left:294px;
     width:130px;
     height:320px;
     background:#2c333a;
     border: 2px solid white;
     border-radius: 10px;
+    text-align: center;
 }
 
 #filterBorder {
     position: absolute;
     top: 10px;
-    left:506px;
+    left:436px;
     width:130px;
     height:320px;
     background:#2c333a;
     border: 2px solid white;
     border-radius: 10px;
+    text-align: center;
 }
 
 #envelopeBorder {
     position: absolute;
     top: 10px;
-    left:648px;
-    width:268px;
+    left:578px;
+    width:338px;
     height:154px;
     background:#2c333a;
     border: 2px solid white;
     border-radius: 10px;
+    text-align: center;
+    vertical-align: text-top;
+
+}
+
+#effectsBorder {
+    position: absolute;
+    top: 176px;
+    left:578px;
+    width:196px;
+    height:154px;
+    background:#2c333a;
+    border: 2px solid white;
+    border-radius: 10px;
+    text-align: center;
 }
 
 #masterBorder {
     position: absolute;
     top: 176px;
-    left:648px;
-    width:268px;
+    left:786px;
+    width:130px;
     height:154px;
     background:#2c333a;
     border: 2px solid white;
     border-radius: 10px;
+    text-align: center;
 }
 
 #lfoWaveform {
-    position:absolute;
-    top: 65px;
-    left: 15px;
+    position: relative;
     color:white;
 }
 
 #osc1Waveform {
-    position:absolute;
-    top: 65px;
-    left: 48px;
     color:white;
 }
 
 #osc2Waveform {
-    position:absolute;
-    top: 65px;
-    left: 48px;
     color:white;
 }
 
 logo {
     position:absolute;
-    top:354px;
-    left:788px;
-    font-family: "Bookman";
-    color:white;
-}
-
-lfoText {
-    position:absolute;
-    top:10px;
-    left:45px;
-    font-family: "Bookman";
-    color:white;
-}
-
-osc1Text {
-    position:absolute;
-    top:10px;
-    left:70px;
-    font-family: "Bookman";
-    color:white;
-}
-
-osc2Text {
-    position:absolute;
-    top:10px;
-    left:70px;
-    font-family: "Bookman";
-    color:white;
-}
-
-mixerText {
-    position:absolute;
-    top:10px;
-    left:34px;
-    font-family: "Bookman";
-    color:white;
-}
-
-filterText {
-    position:absolute;
-    top:10px;
-    left:30px;
-    font-family: "Bookman";
-    color:white;
-}
-
-envelopeText {
-    position:absolute;
-    top:10px;
-    left:78px;
-    font-family: "Bookman";
-    color:white;
-}
-
-masterText {
-    position:absolute;
-    top:10px;
-    left:86px;
-    font-family: "Bookman";
+    top:360px;
+    left:750px;
+    font-family: 'Orbitron', sans-serif;
     color:white;
 }
 
 #lfoFreqKnob {
-    position: absolute;
-    top: 214px;
-    left: 28px;
+    position: relative;
+    top: 60px;
 }
 
 #osc1VolKnob {
-    position: absolute;
-    top: 75px;
-    left: 28px;
+    position: relative;
+    top: 16px;
+}
+
+#osc1DetuneKnob {
+    position: relative;
+    top: 10px;
 }
 
 #osc2VolKnob {
+    position: relative;
+    top: 76px;
+}
+
+#osc2DetuneKnob {
+    position: relative;
+    top: 10px;
+}
+
+#attackEnvelopeKnob {
     position: absolute;
-    top: 214px;
-    left: 28px;
+    top: 72px;
+    left: 26px;
+}
+
+#decayEnvelopeKnob {
+    position: absolute;
+    top: 72px;
+    left: 102px;
+}
+
+#sustainEnvelopeKnob {
+    position: absolute;
+    top: 72px;
+    left: 178px;
+}
+
+#releaseEnvelopeKnob {
+    position: absolute;
+    top: 72px;
+    left: 254px;
+}
+
+#delayEffectsKnob {
+    position: absolute;
+    top: 72px;
+    left: 26px;
+}
+
+#distortionEffectsKnob {
+    position: absolute;
+    top: 72px;
+    left: 110px;
 }
 
 #masterVolKnob {
-    position: absolute;
-    top: 50px;
-    left: 90px;
+    position: relative;
+    top: 14px;
 }
 
 #osc1CutoffKnob {
-    position: absolute;
-    top: 75px;
-    left: 28px;
+    position: relative;
+    top: 16px;
 }
 
 #osc2CutoffKnob {
-    position: absolute;
-    top: 214px;
-    left: 28px;
+    position: relative;
+    top: 76px;
 }
 
 #synthBody {

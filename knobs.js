@@ -5,7 +5,6 @@
 *   distribution of this software for license terms.
 */
 
-
 //  Knob functionality used from this github repo (MIT license):
 //  https://github.com/aterrien/jQuery-Knob/blob/master/js/jquery.knob.js
 $(document).ready(function(){
@@ -97,7 +96,7 @@ $(document).ready(function(){
     $('#lfoFreq').knob(
         {
             'min': 0,
-            'max': 100,
+            'max': 50,
             'width': 75,
             'height': 75,
             'displayInput': true,
@@ -109,6 +108,150 @@ $(document).ready(function(){
             'release': function (v) {
                 //alert(v);
                 setLfoFreq(v);
+            }
+        });
+
+    $('#osc1Detune').knob(
+        {
+            'min': 0,
+            'max': 50,
+            'width': 50,
+            'height': 50,
+            'displayInput': true,
+            'fgColor': "#00CED1",
+            'angleArc': 350,
+            'angleOffset': 5,
+            'step':1,
+            'stopper': true,
+            'release': function (v) {
+                //alert(v);
+                setOsc1Detune(v);
+            }
+        });
+
+    $('#osc2Detune').knob(
+        {
+            'min': 0,
+            'max': 50,
+            'width': 50,
+            'height': 50,
+            'displayInput': true,
+            'fgColor': "#00CED1",
+            'angleArc': 350,
+            'angleOffset': 5,
+            'step':1,
+            'stopper': true,
+            'release': function (v) {
+                //alert(v);
+                setOsc2Detune(v);
+            }
+        });
+
+    $('#attackKnob').knob(
+        {
+            'min': 0,
+            'max': 50,
+            'width': 50,
+            'height': 50,
+            'displayInput': true,
+            'fgColor': "#00CED1",
+            'angleArc': 350,
+            'angleOffset': 5,
+            'step':1,
+            'stopper': true,
+            'release': function (v) {
+                //alert(v);
+                setAttack(v);
+            }
+        });
+
+    $('#decayKnob').knob(
+        {
+            'min': 0,
+            'max': 50,
+            'width': 50,
+            'height': 50,
+            'displayInput': true,
+            'fgColor': "#00CED1",
+            'angleArc': 350,
+            'angleOffset': 5,
+            'step':1,
+            'stopper': true,
+            'release': function (v) {
+                //alert(v);
+                setDecay(v);
+            }
+        });
+
+    $('#sustainKnob').knob(
+        {
+            'min': 0,
+            'max': 50,
+            'width': 50,
+            'height': 50,
+            'displayInput': true,
+            'fgColor': "#00CED1",
+            'angleArc': 350,
+            'angleOffset': 5,
+            'step':1,
+            'stopper': true,
+            'release': function (v) {
+                //alert(v);
+                setDecay(v);
+            }
+        });
+
+    $('#releaseKnob').knob(
+        {
+            'min': 0,
+            'max': 50,
+            'width': 50,
+            'height': 50,
+            'displayInput': true,
+            'fgColor': "#00CED1",
+            'angleArc': 350,
+            'angleOffset': 5,
+            'step':1,
+            'stopper': true,
+            'release': function (v) {
+                //alert(v);
+                setDecay(v);
+            }
+        });
+
+    $('#delayKnob').knob(
+        {
+            'min': 0,
+            'max': 50,
+            'width': 50,
+            'height': 50,
+            'displayInput': true,
+            'fgColor': "#00CED1",
+            'angleArc': 350,
+            'angleOffset': 5,
+            'step':1,
+            'stopper': true,
+            'release': function (v) {
+                //alert(v);
+                setDelay(v);
+            }
+        });
+
+    $('#distortionKnob').knob(
+        {
+            'min': 0,
+            'max': 500,
+            'width': 50,
+            'height': 50,
+            'displayInput': true,
+            'fgColor': "#00CED1",
+            'angleArc': 350,
+            'angleOffset': 5,
+            'step':1,
+            'stopper': true,
+            'release': function (v) {
+                //alert(v);
+                makeDistortionCurve(v);
             }
         });
 });

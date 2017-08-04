@@ -11,6 +11,7 @@
 	<meta charset="utf‐8">
 	<title> GlobalSynth </title> 	
     <link rel="stylesheet" type="text/css" href="keyboard.css">
+    <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <!--Knob functionality used from this github repo (MIT license):
@@ -22,61 +23,102 @@
 </head>
 <body>
     <div id="synthBody">
-        <div id="lfoBorder">
-            <h3><lfoText>LFO</lfoText></h3>
+        <div id="lfoBorder" style="text-align:center">
+            <h4><lfoText>LFO</lfoText></h4>
             <select id="lfoWaveform">
-                <option value="sine" selected>SINE</option>
-                <option value="square">SQUARE</option>
+                <option value="sine">SINE</option>
+                <option value="square" selected>SQUARE</option>
                 <option value="sawtooth">SAW</option>
                 <option value="triangle">TRIANGLE</option>
             </select>
             <div id="lfoFreqKnob">
                 <input type="text" value="0.0" class="lfoKnob" id="lfoFreq">
+                <h5>Frequency</h5>
             </div>
         </div>
-        <div id="osc1Border">
-            <h3><osc1Text>OSC 1</osc1Text></h3>
+        <div id="osc1Border" style="text-align:center">
+            <h4><osc1Text>OSC 1</osc1Text></h4>
             <select id="osc1Waveform">
                 <option value="sine" selected>SINE</option>
                 <option value="square">SQUARE</option>
                 <option value="sawtooth">SAW</option>
                 <option value="triangle">TRIANGLE</option>
             </select>
+            <div id="osc1DetuneKnob" style="text-align:center">
+                <input type="text" value="0.0" class="detuneKnob" id="osc1Detune">
+                <h5>Detune</h5>
+            </div>
         </div>
-        <div id="osc2Border">
-            <h3><osc2Text>OSC 2</osc2Text></h3>
+        <div id="osc2Border" style="text-align:center">
+            <h4><osc2Text>OSC 2</osc2Text></h4>
             <select id="osc2Waveform">
                 <option class="greenText" value="sine">SINE</option>
                 <option class="greenText" value="square">SQUARE</option>
                 <option class="greenText" value="sawtooth" selected>SAW</option>
                 <option class="greenText" value="triangle">TRIANGLE</option>
             </select>
+            <div id="osc2DetuneKnob" style="text-align:center">
+                <input type="text" value="0.0" class="detuneKnob" id="osc2Detune">
+                <h5>Detune</h5>
+            </div>
         </div>
         <div id="mixerBorder">
-            <h3><mixerText>MIXER</mixerText></h3>
-            <div id="osc1VolKnob">
+            <h4><mixerText>MIXER</mixerText></h4>
+            <div id="osc1VolKnob" style="text-align:center">
                 <input type="text" value="50" class="volumeKnob" id="osc1Knob">
+                <h5>Osc 1 Volume</h5>
             </div>
-            <div id="osc2VolKnob">
+            <div id="osc2VolKnob" style="text-align:center">
                 <input type="text" value="50" class="volumeKnob" id="osc2Knob">
+                <h5>Osc 2 Volume</h5>
             </div>
         </div>
         <div id="filterBorder">
-            <h3><filterText>FILTER</filterText></h3>
-            <div id="osc1CutoffKnob">
+            <h4><filterText>FILTER</filterText></h4>
+            <div id="osc1CutoffKnob" style="text-align:center">
                 <input type="text" value="3000" class="cutoffKnob" id="osc1Cutoff">
+                <h5>Osc 1 Cutoff</h5>
             </div>
-            <div id="osc2CutoffKnob">
+            <div id="osc2CutoffKnob" style="text-align:center">
                 <input type="text" value="3000" class="cutoffKnob" id="osc2Cutoff">
+                <h5>Osc 2 Cutoff</h5>
             </div>
         </div>
         <div id="envelopeBorder">
-            <h3><envelopeText>ENVELOPE</envelopeText></h3>
+            <h4><envelopeText>ENVELOPE</envelopeText></h4>
+            <div id="attackEnvelopeKnob" style="text-align:center">
+                <input type="text" value="0.0" class="attackKnob" id="attackKnob">
+                <h5>Attack</h5>
+            </div>
+            <div id="decayEnvelopeKnob" style="text-align:center">
+                <input type="text" value="0.0" class="decayKnob" id="decayKnob">
+                <h5>Decay</h5>
+            </div>
+            <div id="sustainEnvelopeKnob" style="text-align:center">
+                <input type="text" value="0.0" class="sustainKnob" id="sustainKnob">
+                <h5>Sustain</h5>
+            </div>
+            <div id="releaseEnvelopeKnob" style="text-align:center">
+                <input type="text" value="0.0" class="releaseKnob" id="releaseKnob">
+                <h5>Release</h5>
+            </div>
+        </div>
+        <div id="effectsBorder">
+            <h4><effectsText>EFFECTS</effectsText></h4>
+            <div id="delayEffectsKnob" style="text-align:center">
+                <input type="text" value="0.0" class="delayKnob" id="delayKnob">
+                <h5>Delay</h5>
+            </div>
+            <div id="distortionEffectsKnob" style="text-align:center">
+                <input type="text" value="0.0" class="distortionKnob" id="distortionKnob">
+                <h5>Distortion</h5>
+            </div>
         </div>
         <div id="masterBorder">
-            <h3><masterText>MASTER</masterText></h3>
-            <div id="masterVolKnob">
+            <h4><masterText>MASTER</masterText></h4>
+            <div id="masterVolKnob" style="text-align:center">
                 <input type="text" value="75" class="volumeKnob" id="masterKnob">
+                <h5>Volume</h5>
             </div>
         </div>
     </div>
