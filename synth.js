@@ -8,39 +8,42 @@
 var context = new (window.AudioContext || window.webkitAudioContext)();
 window.addEventListener('keydown', keyDownHandler, false);
 window.addEventListener('keyup', keyUpHandler, false);
-//window.addEventListener('mousedown', mouseDownHandler, false);
-//window.addEventListener('mouseup', mouseUpHandler, false);
 
 var osc1 = new Array(32);
 var osc2 = new Array(32);
+var noise = new Array(32);
+var distortion = context.createWaveShaper();
+var delay = context.createDelay();
 
 //LFO
 var lfo = new Array(32);
-var lfoFreq = 0;
 var lfoVol = context.createGain();
-var lfoGain = 0.5;
+var lfoFreq = 0;
+var lfoDepth = 500;
 
-//OSC 1 Lowpass Filter
-var lowpass1 = context.createBiquadFilter();
-var osc1CutoffFreq = 10000;
-lowpass1.type = "lowpass";
-lowpass1.Q.value = 0;
-lowpass1.gain.value = 0;
-
-//OSC 2 Lowpass Filter
-var lowpass2 = context.createBiquadFilter();
-var osc2CutoffFreq = 10000;
-lowpass2.type = "lowpass";
-lowpass2.Q.value = 0;
-lowpass2.gain.value = 0;
+//Lowpass Filter
+var lowpass = context.createBiquadFilter();
+var cutoffFreq = 2500;
+var resonanceQ = 0;
+lowpass.type = "lowpass";
+lowpass.Q.value = resonanceQ;
+lowpass.gain.value = 0;
+lowpass.connect(delay);
 
 //OSC 1 Volume
 var osc1Vol = context.createGain();
 var osc1Gain = 0.5;
+var osc1DetuneValue = 0.0;
 
 //OSC 2 Volume
 var osc2Vol = context.createGain();
 var osc2Gain = 0.5;
+var osc2DetuneValue = -10.0;
+
+//Noise
+var noiseVol = context.createGain();
+var noiseGain = 0.0;
+noiseVol.gain.value = noiseGain;
 
 //Master Volume
 var masterVol = context.createGain();
@@ -229,37 +232,141 @@ function keyUpHandler(ev) {
     }
     keyUp.style.backgroundColor = color;
 }
-/*
-function mouseDownHandler(ev) {
-    mouse = document.getElementById(ev.target.id);
-    playPitch(mouse.freq);
+
+var currentEv;
+var currentId;
+function mouseDownHandler(ev, id) {
+    //console.log(ev);
+    currentEv = ev;
+    currentId = id;
+    var keyDown = document.getElementById(id);
+    keyDown.style.backgroundColor='lightgrey';
+    playPitch(keys[ev]);
 }
-*/
+
+function mouseUpHandler() {
+    var ev = currentEv;
+    var id = currentId;
+    var keyUp = document.getElementById(id);
+    stopPitch(keys[ev]);
+    if (keyUp.classList.contains('whiteKey')) {
+        color = 'white';
+    } else if (keyUp.classList.contains('blackKey')) {
+        color = 'black';
+    }
+    keyUp.style.backgroundColor = color;
+}
 
 function setOsc1Volume(value) {
-    osc1Gain = value * 0.01;
+    osc1Gain = value / 100;
 }
 
 function setOsc2Volume(value) {
-    osc2Gain = value * 0.01;
+    osc2Gain = value / 100;
+}
+
+function setNoiseVolume(value) {
+    noiseGain = value / 100;
 }
 
 function setMasterVolume(value) {
-    masterGain = value * 0.01;
+    masterGain = value / 100;
 }
 
-function setOsc1Cutoff(value) {
-    osc1CutoffFreq = value;
+function setCutoff(value) {
+    cutoffFreq = value;
 }
 
-function setOsc2Cutoff(value) {
-    osc2CutoffFreq = value;
+function setResonance(value) {
+    resonanceQ = value;
 }
 
 function setLfoFreq(value) {
     lfoFreq = value;
 }
 
+function setLfoDepth(value) {
+    lfoDepth = value;
+}
+
+function setOsc1Detune(value) {
+    osc1DetuneValue = value;
+}
+
+function setOsc2Detune(value) {
+    osc2DetuneValue = value;
+}
+
+function setDistortion(value) {
+    if(value == 0.0) {
+        lowpass.connect(delay);
+    } else {
+        lowpass.connect(distortion);
+    }
+    distortion.curve = makeDistortionCurve(value);
+    distortion.oversample = '4x';
+}
+
+function setDelay(value) {
+    delay.delayTime.value = value;
+}
+
+//https://noisehack.com/generate-noise-web-audio-api/
+//MIT license
+//Creates white noise loop
+var bufferSize;
+var noiseBuffer;
+var output;
+function createWhiteNoise() {
+    bufferSize = 2 * context.sampleRate;
+    noiseBuffer = context.createBuffer(1, bufferSize, context.sampleRate);
+    output = noiseBuffer.getChannelData(0);
+    for (var i = 0; i < bufferSize; i++) {
+        output[i] = Math.random() * 2 - 1;
+    }
+}
+
+//https://noisehack.com/generate-noise-web-audio-api/
+//MIT license
+//Creates pink noise loop
+function createPinkNoise() {
+    bufferSize = 2 * context.sampleRate;
+    var b0, b1, b2, b3, b4, b5, b6;
+    b0 = b1 = b2 = b3 = b4 = b5 = b6 = 0.0;
+    noiseBuffer = context.createBuffer(1, bufferSize, context.sampleRate);
+    output = noiseBuffer.getChannelData(0);
+    for (var i = 0; i < bufferSize; i++) {
+        var white = Math.random() * 2 - 1;
+        b0 = 0.99886 * b0 + white * 0.0555179;
+        b1 = 0.99332 * b1 + white * 0.0750759;
+        b2 = 0.96900 * b2 + white * 0.1538520;
+        b3 = 0.86650 * b3 + white * 0.3104856;
+        b4 = 0.55000 * b4 + white * 0.5329522;
+        b5 = -0.7616 * b5 - white * 0.0168980;
+        output[i] = b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * 0.5362;
+        output[i] *= 0.11; // (roughly) compensate for gain
+        b6 = white * 0.115926;
+    }
+}
+
+//https://noisehack.com/generate-noise-web-audio-api/
+//MIT license
+//Creates brown noise loop
+function createBrownNoise() {
+    bufferSize = 2 * context.sampleRate;
+    var lastOut = 0.0;
+    noiseBuffer = context.createBuffer(1, bufferSize, context.sampleRate);
+    output = noiseBuffer.getChannelData(0);
+    for  (var i = 0; i < bufferSize; i++) {
+        var white = Math.random() * 2 - 1;
+        output[i] = (lastOut + (0.02 * white)) / 1.02;
+        lastOut = output[i];
+        output[i] *= 3.5; // (roughly) compensate for gain
+    }
+}
+
+//https://stackoverflow.com/questions/22312841/waveshaper-node-in-webaudio-how-to-emulate-distortion
+//Creative Commons license
 function makeDistortionCurve(amount) {
     var k = typeof amount === 'number' ? amount : 0,
         n_samples = 44100,
@@ -273,70 +380,87 @@ function makeDistortionCurve(amount) {
     }
     return curve;
 };
-var distortion1 = context.createWaveShaper();
-distortion1.curve = makeDistortionCurve(400);
-distortion1.oversample = '4x';
-
-var distortion2 = context.createWaveShaper();
-distortion2.curve = makeDistortionCurve(10);
-distortion2.oversample = '4x';
 
 function playPitch(key) {
     var osc1Waveform = document.getElementById('osc1Waveform');
     var osc2Waveform = document.getElementById('osc2Waveform');
     var lfoWaveform = document.getElementById('lfoWaveform');
+    var noiseType = document.getElementById('noiseType');
     var lfoWave = lfoWaveform.options[lfoWaveform.selectedIndex].value;
     var wave1 = osc1Waveform.options[osc1Waveform.selectedIndex].value;
     var wave2 = osc2Waveform.options[osc2Waveform.selectedIndex].value;
+    var noiseValue = noiseType.options[noiseType.selectedIndex].value;
+    console.log(noiseValue);
+    if(noiseValue == "white") {
+        createWhiteNoise();
+    } else if(noiseValue == "pink") {
+        createPinkNoise();
+    } else {
+        createBrownNoise();
+    }
 
     //LFO
     lfo[key.oscIdx] = context.createOscillator();
     lfo[key.oscIdx].type = lfoWave;
     lfo[key.oscIdx].frequency.value = lfoFreq;
-    lfo[key.oscIdx].connect(lfoVol.gain);
-    lfoVol.gain.value = lfoGain;
-    lfoVol.connect(masterVol);
+    lfoVol.gain.value = lfoDepth;
 
     //OSC 1
     osc1[key.oscIdx] = context.createOscillator();
     osc1[key.oscIdx].type = wave1;
     osc1[key.oscIdx].frequency.value = key.freq;
-    //osc1[key.oscIdx].detune.value = 10;
+    osc1[key.oscIdx].detune.value = osc1DetuneValue;
     osc1Vol.gain.value = osc1Gain;
-    osc1[key.oscIdx].connect(osc1Vol);
-    distortion1.connect(lfoVol);
-    osc1Vol.connect(lowpass1);
 
     //OSC 2
     osc2[key.oscIdx] = context.createOscillator();
     osc2[key.oscIdx].type = wave2;
     osc2[key.oscIdx].frequency.value = key.freq;
+    osc2[key.oscIdx].detune.value = osc2DetuneValue;
     osc2Vol.gain.value = osc2Gain;
-    osc2[key.oscIdx].connect(osc2Vol);
-    distortion2.connect(lfoVol);
-    osc2[key.oscIdx].connect(osc2Vol);
-    osc2Vol.connect(lowpass2);
+
+    //Noise
+    noise[key.oscIdx] = context.createBufferSource();
+    noise[key.oscIdx].buffer = noiseBuffer;
+    noise[key.oscIdx].loop = true;
+    noiseVol.gain.value = noiseGain;
 
     //Lowpass Filters
-    lowpass1.frequency.value = osc1CutoffFreq;
-    lowpass1.connect(distortion1);
-    lowpass2.frequency.value = osc2CutoffFreq;
-    lowpass2.connect(distortion1);
+    lowpass.frequency.value = cutoffFreq;
+    lowpass.Q.value = resonanceQ;
 
     //Master
     masterVol.gain.value = masterGain;
+
+    //Connections
+    lfo[key.oscIdx].connect(lfoVol);
+    lfoVol.connect(lowpass.frequency);
+
+    osc1[key.oscIdx].connect(osc1Vol);
+    osc1Vol.connect(lowpass);
+
+    osc2[key.oscIdx].connect(osc2Vol);
+    osc2Vol.connect(lowpass);
+
+    noise[key.oscIdx].connect(noiseVol);
+    noiseVol.connect(lowpass);
+
+    distortion.connect(delay);
+    delay.connect(masterVol);
     masterVol.connect(context.destination);
 
+    //Start
+    noise[key.oscIdx].start();
     lfo[key.oscIdx].start();
     osc1[key.oscIdx].start();
     osc2[key.oscIdx].start();
 }
 
 function stopPitch(key) {
+    noise[key.oscIdx].stop(0);
     lfo[key.oscIdx].stop(0);
     osc1[key.oscIdx].stop(0);
     osc2[key.oscIdx].stop(0);
 }
 
-//var analyser = context.createAnalyser();
 

@@ -13,11 +13,9 @@
     <link rel="stylesheet" type="text/css" href="keyboard.css">
     <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
     <!--Knob functionality used from this github repo (MIT license):
     https://github.com/aterrien/jQuery-Knob/blob/master/js/jquery.knob.js-->
     <script src="https://cdn.rawgit.com/aterrien/jQuery-Knob/755309e9/js/jquery.knob.js"></script>
-
 	<script src="synth.js"></script>
     <script src="knobs.js"></script>
 </head>
@@ -26,22 +24,34 @@
         <div id="lfoBorder" style="text-align:center">
             <h4><lfoText>LFO</lfoText></h4>
             <select id="lfoWaveform">
-                <option value="sine">SINE</option>
-                <option value="square" selected>SQUARE</option>
+                <option value="sine" selected>SINE</option>
+                <option value="square">SQUARE</option>
                 <option value="sawtooth">SAW</option>
                 <option value="triangle">TRIANGLE</option>
             </select>
             <div id="lfoFreqKnob">
                 <input type="text" value="0.0" class="lfoKnob" id="lfoFreq">
-                <h5>Frequency</h5>
+                <h5>Speed</h5>
             </div>
+            <div id="lfoDepthKnob">
+                <input type="text" value="500" class="lfoKnob" id="lfoDepth">
+                <h5>Depth</h5>
+            </div>
+        </div>
+        <div id="noiseBorder" style="text-align:center">
+            <h4><noiseText>NOISE</noiseText></h4>
+            <select id="noiseType">
+                <option value="white">WHITE</option>
+                <option value="pink" selected>PINK</option>
+                <option value="brown">BROWN</option>
+            </select>
         </div>
         <div id="osc1Border" style="text-align:center">
             <h4><osc1Text>OSC 1</osc1Text></h4>
             <select id="osc1Waveform">
-                <option value="sine" selected>SINE</option>
+                <option value="sine">SINE</option>
                 <option value="square">SQUARE</option>
-                <option value="sawtooth">SAW</option>
+                <option value="sawtooth" selected>SAW</option>
                 <option value="triangle">TRIANGLE</option>
             </select>
             <div id="osc1DetuneKnob" style="text-align:center">
@@ -58,7 +68,7 @@
                 <option class="greenText" value="triangle">TRIANGLE</option>
             </select>
             <div id="osc2DetuneKnob" style="text-align:center">
-                <input type="text" value="0.0" class="detuneKnob" id="osc2Detune">
+                <input type="text" value="-10.0" class="detuneKnob" id="osc2Detune">
                 <h5>Detune</h5>
             </div>
         </div>
@@ -66,22 +76,26 @@
             <h4><mixerText>MIXER</mixerText></h4>
             <div id="osc1VolKnob" style="text-align:center">
                 <input type="text" value="50" class="volumeKnob" id="osc1Knob">
-                <h5>Osc 1 Volume</h5>
+                <h5>Osc 1</h5>
             </div>
             <div id="osc2VolKnob" style="text-align:center">
                 <input type="text" value="50" class="volumeKnob" id="osc2Knob">
-                <h5>Osc 2 Volume</h5>
+                <h5>Osc 2</h5>
+            </div>
+            <div id="noiseVolKnob" style="text-align:center">
+                <input type="text" value="0" class="volumeKnob" id="noiseKnob">
+                <h5>Noise</h5>
             </div>
         </div>
         <div id="filterBorder">
             <h4><filterText>FILTER</filterText></h4>
-            <div id="osc1CutoffKnob" style="text-align:center">
-                <input type="text" value="3000" class="cutoffKnob" id="osc1Cutoff">
-                <h5>Osc 1 Cutoff</h5>
+            <div id="cutoffKnob" style="text-align:center">
+                <input type="text" value="2500" class="cutoffKnob" id="cutoff">
+                <h5>Cutoff</h5>
             </div>
-            <div id="osc2CutoffKnob" style="text-align:center">
-                <input type="text" value="3000" class="cutoffKnob" id="osc2Cutoff">
-                <h5>Osc 2 Cutoff</h5>
+            <div id="resonanceKnob" style="text-align:center">
+                <input type="text" value="0" class="resonanceKnob" id="resonance">
+                <h5>Resonance</h5>
             </div>
         </div>
         <div id="envelopeBorder">
@@ -126,32 +140,31 @@
     <div id="leftSide"></div>
     <div id="rightSide"></div>
     <div id="keyboard">
-        <div class="whiteKey up" id="C3"></div>
-        <div class="whiteKey up" id="D3"></div>
-        <div class="whiteKey up" id="E3"></div>
-        <div class="whiteKey up" id="F3"></div>
-        <div class="whiteKey up" id="G3"></div>
-        <div class="whiteKey up" id="A3"></div>
-        <div class="whiteKey up" id="B3"></div>
-        <div class="whiteKey up" id="C4"></div>
-        <div class="whiteKey up" id="D4"></div>
-        <div class="whiteKey up" id="E4"></div>
-        <div class="whiteKey up" id="F4"></div>
-        <div class="whiteKey up" id="G4"></div>
-        <div class="whiteKey up" id="A4"></div>
-        <div class="whiteKey up" id="B4"></div>
-        <div class="whiteKey up" id="C5"></div>
-        <div class="blackKey up" id="CSharp3"></div>
-        <div class="blackKey up" id="DSharp3"></div>
-        <div class="blackKey up" id="FSharp3"></div>
-        <div class="blackKey up" id="GSharp3"></div>
-        <div class="blackKey up" id="ASharp3"></div>
-        <div class="blackKey up" id="CSharp4"></div>
-        <div class="blackKey up" id="DSharp4"></div>
-        <div class="blackKey up" id="FSharp4"></div>
-        <div class="blackKey up" id="GSharp4"></div>
-        <div class="blackKey up" id="ASharp4"></div>
+        <div class="whiteKey up" id="C3" onmousedown="mouseDownHandler(90, 'C3')" onmouseup="mouseUpHandler()"></div>
+        <div class="whiteKey up" id="D3" onmousedown="mouseDownHandler(88, 'D3')" onmouseup="mouseUpHandler()"></div>
+        <div class="whiteKey up" id="E3" onmousedown="mouseDownHandler(67, 'E3')" onmouseup="mouseUpHandler()"></div>
+        <div class="whiteKey up" id="F3" onmousedown="mouseDownHandler(86, 'F3')" onmouseup="mouseUpHandler()"></div>
+        <div class="whiteKey up" id="G3" onmousedown="mouseDownHandler(66, 'G3')" onmouseup="mouseUpHandler()"></div>
+        <div class="whiteKey up" id="A3" onmousedown="mouseDownHandler(78, 'A3')" onmouseup="mouseUpHandler()"></div>
+        <div class="whiteKey up" id="B3" onmousedown="mouseDownHandler(77, 'B3')" onmouseup="mouseUpHandler()"></div>
+        <div class="whiteKey up" id="C4" onmousedown="mouseDownHandler(81, 'C4')" onmouseup="mouseUpHandler()"></div>
+        <div class="whiteKey up" id="D4" onmousedown="mouseDownHandler(87, 'D4')" onmouseup="mouseUpHandler()"></div>
+        <div class="whiteKey up" id="E4" onmousedown="mouseDownHandler(69, 'E4')" onmouseup="mouseUpHandler()"></div>
+        <div class="whiteKey up" id="F4" onmousedown="mouseDownHandler(82, 'F4')" onmouseup="mouseUpHandler()"></div>
+        <div class="whiteKey up" id="G4" onmousedown="mouseDownHandler(84, 'G4')" onmouseup="mouseUpHandler()"></div>
+        <div class="whiteKey up" id="A4" onmousedown="mouseDownHandler(89, 'A4')" onmouseup="mouseUpHandler()"></div>
+        <div class="whiteKey up" id="B4" onmousedown="mouseDownHandler(85, 'B4')" onmouseup="mouseUpHandler()"></div>
+        <div class="whiteKey up" id="C5" onmousedown="mouseDownHandler(73, 'C5')" onmouseup="mouseUpHandler()"></div>
+        <div class="blackKey up" id="CSharp3" onmousedown="mouseDownHandler(83, 'CSharp3')" onmouseup="mouseUpHandler()"></div>
+        <div class="blackKey up" id="DSharp3" onmousedown="mouseDownHandler(68, 'DSharp3')" onmouseup="mouseUpHandler()"></div>
+        <div class="blackKey up" id="FSharp3" onmousedown="mouseDownHandler(71, 'FSharp3')" onmouseup="mouseUpHandler()"></div>
+        <div class="blackKey up" id="GSharp3" onmousedown="mouseDownHandler(72, 'GSharp3')" onmouseup="mouseUpHandler()"></div>
+        <div class="blackKey up" id="ASharp3" onmousedown="mouseDownHandler(74, 'ASharp3')" onmouseup="mouseUpHandler()"></div>
+        <div class="blackKey up" id="CSharp4" onmousedown="mouseDownHandler(50, 'CSharp4')" onmouseup="mouseUpHandler()"></div>
+        <div class="blackKey up" id="DSharp4" onmousedown="mouseDownHandler(51, 'DSharp4')" onmouseup="mouseUpHandler()"></div>
+        <div class="blackKey up" id="FSharp4" onmousedown="mouseDownHandler(53, 'FSharp4')" onmouseup="mouseUpHandler()"></div>
+        <div class="blackKey up" id="GSharp4" onmousedown="mouseDownHandler(54, 'GSharp4')" onmouseup="mouseUpHandler()"></div>
+        <div class="blackKey up" id="ASharp4" onmousedown="mouseDownHandler(55, 'ASharp4')" onmouseup="mouseUpHandler()"></div>
    </div>
-
 </body>
 </html>

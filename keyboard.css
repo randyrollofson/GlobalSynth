@@ -44,7 +44,19 @@ h5 {
     top: 10px;
     left:10px;
     width:130px;
-    height:320px;
+    height:240px;
+    background:#2c333a;
+    border: 2px solid white;
+    border-radius: 10px;
+    text-align: center;
+}
+
+#noiseBorder {
+    position: absolute;
+    top: 262px;
+    left:10px;
+    width:130px;
+    height:68px;
     background:#2c333a;
     border: 2px solid white;
     border-radius: 10px;
@@ -142,6 +154,10 @@ h5 {
     color:white;
 }
 
+#noiseType {
+    color:white;
+}
+
 #osc1Waveform {
     color:white;
 }
@@ -160,7 +176,12 @@ logo {
 
 #lfoFreqKnob {
     position: relative;
-    top: 60px;
+    top: 10px;
+}
+
+#lfoDepthKnob {
+    position: relative;
+    top: 16px;
 }
 
 #osc1VolKnob {
@@ -175,7 +196,7 @@ logo {
 
 #osc2VolKnob {
     position: relative;
-    top: 76px;
+    top: 31px;
 }
 
 #osc2DetuneKnob {
@@ -183,40 +204,45 @@ logo {
     top: 10px;
 }
 
+#noiseVolKnob {
+    position: relative;
+    top: 46px;
+}
+
 #attackEnvelopeKnob {
     position: absolute;
-    top: 72px;
+    top: 60px;
     left: 26px;
 }
 
 #decayEnvelopeKnob {
     position: absolute;
-    top: 72px;
+    top: 60px;
     left: 102px;
 }
 
 #sustainEnvelopeKnob {
     position: absolute;
-    top: 72px;
+    top: 60px;
     left: 178px;
 }
 
 #releaseEnvelopeKnob {
     position: absolute;
-    top: 72px;
+    top: 60px;
     left: 254px;
 }
 
 #delayEffectsKnob {
     position: absolute;
-    top: 72px;
-    left: 26px;
+    top: 60px;
+    left: 120px;
 }
 
 #distortionEffectsKnob {
     position: absolute;
-    top: 72px;
-    left: 110px;
+    top: 60px;
+    left: 16px;
 }
 
 #masterVolKnob {
@@ -224,14 +250,14 @@ logo {
     top: 14px;
 }
 
-#osc1CutoffKnob {
+#cutoffKnob {
     position: relative;
     top: 16px;
 }
 
-#osc2CutoffKnob {
+#resonanceKnob {
     position: relative;
-    top: 76px;
+    top: 64px;
 }
 
 #synthBody {

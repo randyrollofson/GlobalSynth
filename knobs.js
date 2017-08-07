@@ -12,10 +12,11 @@ $(document).ready(function(){
         {
             'min': 0,
             'max': 100,
-            'width': 75,
-            'height': 75,
+            'width': 50,
+            'height': 50,
             'displayInput': true,
             'fgColor': "#00CED1",
+            'inputColor': "white",
             'angleArc': 350,
             'angleOffset': 5,
             'stopper': true,
@@ -29,16 +30,35 @@ $(document).ready(function(){
         {
             'min': 0,
             'max': 100,
-            'width': 75,
-            'height': 75,
+            'width': 50,
+            'height': 50,
             'displayInput': true,
             'fgColor': "#00CED1",
+            'inputColor': "white",
             'angleArc': 350,
             'angleOffset': 5,
             'stopper': true,
             'release': function (v) {
                 //alert(v);
                 setOsc2Volume(v);
+            }
+        });
+
+    $('#noiseKnob').knob(
+        {
+            'min': 0,
+            'max': 100,
+            'width': 50,
+            'height': 50,
+            'displayInput': true,
+            'fgColor': "#00CED1",
+            'inputColor': "white",
+            'angleArc': 350,
+            'angleOffset': 5,
+            'stopper': true,
+            'release': function (v) {
+                //alert(v);
+                setNoiseVolume(v);
             }
         });
 
@@ -50,6 +70,7 @@ $(document).ready(function(){
             'height': 75,
             'displayInput': true,
             'fgColor': "#00CED1",
+            'inputColor': "white",
             'angleArc': 350,
             'angleOffset': 5,
             'stopper': true,
@@ -59,7 +80,7 @@ $(document).ready(function(){
             }
         });
 
-    $('#osc1Cutoff').knob(
+    $('#cutoff').knob(
         {
             'min': 0,
             'max': 10000,
@@ -67,33 +88,17 @@ $(document).ready(function(){
             'height': 75,
             'displayInput': true,
             'fgColor': "#00CED1",
+            'inputColor': "white",
             'angleArc': 350,
             'angleOffset': 5,
             'stopper': true,
             'release': function (v) {
                 //alert(v);
-                setOsc1Cutoff(v);
+                setCutoff(v);
             }
         });
 
-    $('#osc2Cutoff').knob(
-        {
-            'min': 0,
-            'max': 10000,
-            'width': 75,
-            'height': 75,
-            'displayInput': true,
-            'fgColor': "#00CED1",
-            'angleArc': 350,
-            'angleOffset': 5,
-            'stopper': true,
-            'release': function (v) {
-                //alert(v);
-                setOsc2Cutoff(v);
-            }
-        });
-
-    $('#lfoFreq').knob(
+    $('#resonance').knob(
         {
             'min': 0,
             'max': 50,
@@ -101,6 +106,25 @@ $(document).ready(function(){
             'height': 75,
             'displayInput': true,
             'fgColor': "#00CED1",
+            'inputColor': "white",
+            'angleArc': 350,
+            'angleOffset': 5,
+            'stopper': true,
+            'release': function (v) {
+                //alert(v);
+                setResonance(v);
+            }
+        });
+
+    $('#lfoFreq').knob(
+        {
+            'min': 0,
+            'max': 25,
+            'width': 50,
+            'height': 50,
+            'displayInput': true,
+            'fgColor': "#00CED1",
+            'inputColor': "white",
             'angleArc': 350,
             'angleOffset': 5,
             'step':0.1,
@@ -111,14 +135,34 @@ $(document).ready(function(){
             }
         });
 
-    $('#osc1Detune').knob(
+    $('#lfoDepth').knob(
         {
             'min': 0,
+            'max': 1000,
+            'width': 50,
+            'height': 50,
+            'displayInput': true,
+            'fgColor': "#00CED1",
+            'inputColor': "white",
+            'angleArc': 350,
+            'angleOffset': 5,
+            'step':1,
+            'stopper': true,
+            'release': function (v) {
+                //alert(v);
+                setLfoDepth(v);
+            }
+        });
+
+    $('#osc1Detune').knob(
+        {
+            'min': -50,
             'max': 50,
             'width': 50,
             'height': 50,
             'displayInput': true,
             'fgColor': "#00CED1",
+            'inputColor': "white",
             'angleArc': 350,
             'angleOffset': 5,
             'step':1,
@@ -131,12 +175,13 @@ $(document).ready(function(){
 
     $('#osc2Detune').knob(
         {
-            'min': 0,
+            'min': -50,
             'max': 50,
             'width': 50,
             'height': 50,
             'displayInput': true,
             'fgColor': "#00CED1",
+            'inputColor': "white",
             'angleArc': 350,
             'angleOffset': 5,
             'step':1,
@@ -155,6 +200,7 @@ $(document).ready(function(){
             'height': 50,
             'displayInput': true,
             'fgColor': "#00CED1",
+            'inputColor': "white",
             'angleArc': 350,
             'angleOffset': 5,
             'step':1,
@@ -173,6 +219,7 @@ $(document).ready(function(){
             'height': 50,
             'displayInput': true,
             'fgColor': "#00CED1",
+            'inputColor': "white",
             'angleArc': 350,
             'angleOffset': 5,
             'step':1,
@@ -191,13 +238,14 @@ $(document).ready(function(){
             'height': 50,
             'displayInput': true,
             'fgColor': "#00CED1",
+            'inputColor': "white",
             'angleArc': 350,
             'angleOffset': 5,
             'step':1,
             'stopper': true,
             'release': function (v) {
                 //alert(v);
-                setDecay(v);
+                setSustain(v);
             }
         });
 
@@ -209,27 +257,29 @@ $(document).ready(function(){
             'height': 50,
             'displayInput': true,
             'fgColor': "#00CED1",
+            'inputColor': "white",
             'angleArc': 350,
             'angleOffset': 5,
             'step':1,
             'stopper': true,
             'release': function (v) {
                 //alert(v);
-                setDecay(v);
+                setRelease(v);
             }
         });
 
     $('#delayKnob').knob(
         {
-            'min': 0,
-            'max': 50,
+            'min': 0.0,
+            'max': 5.0,
             'width': 50,
             'height': 50,
             'displayInput': true,
             'fgColor': "#00CED1",
+            'inputColor': "white",
             'angleArc': 350,
             'angleOffset': 5,
-            'step':1,
+            'step':0.01,
             'stopper': true,
             'release': function (v) {
                 //alert(v);
@@ -245,13 +295,14 @@ $(document).ready(function(){
             'height': 50,
             'displayInput': true,
             'fgColor': "#00CED1",
+            'inputColor': "white",
             'angleArc': 350,
             'angleOffset': 5,
             'step':1,
             'stopper': true,
             'release': function (v) {
                 //alert(v);
-                makeDistortionCurve(v);
+                setDistortion(v);
             }
         });
 });
