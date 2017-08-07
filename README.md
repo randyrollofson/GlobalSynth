@@ -33,3 +33,7 @@ This is a work in progress and is playable via the computer keyboard.
 
 ## License
 This program is licensed under the "MIT License". Please see the file `COPYING` in the source distribution of this software for license terms.
+
+## Contact
+randyrollofson@gmail.com
+randyrollofson.com
