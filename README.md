@@ -36,4 +36,4 @@ This program is licensed under the "MIT License". Please see the file `COPYING` 
 
 ## Contact
 randyrollofson@gmail.com
-randyrollofson.com
+http://www.randyrollofson.com
