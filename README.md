@@ -5,7 +5,7 @@ GlobalSynth is a 2 oscillator subtractive synthesizer written in JavaScript and 
 
 This is a work in progress and is playable via the computer keyboard or mouse.
 ## How To Use
-1. Clone or downlaod the repository
+1. Clone or download the repository
 2. Run `index.html` and GlobalSynth will open in a new browser tab.
 3. Use computer keys `zsxdcvgbhnjm` (lower octave) `q2w3er5t6y7ui` (upper octave) to play.
 4. Can also play via computer mouse.
