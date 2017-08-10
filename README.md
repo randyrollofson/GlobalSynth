@@ -1,13 +1,14 @@
 # GlobalSynth
 Copyright © 2017 Randy Rollofson
 
-GlobalSynth is a synthesizer written in JavaScript and uses the Web Audio API. The synth runs completely inside the web browser (Chrome is recommended), no additional software is required.
+GlobalSynth is a 2 oscillator subtractive synthesizer written in JavaScript and uses the Web Audio API. The synth runs completely inside the web browser (Chrome is recommended), no additional software is required.
 
-This is a work in progress and is playable via the computer keyboard.
+This is a work in progress and is playable via the computer keyboard or mouse.
 ## How To Use
-1. Run `index.html` and GlobalSynth will open in a new browser tab.
-2. Use computer keys `zsxdcvgbhnjm` (lower octave) `q2w3er5t6y7ui` (upper octave) to play.
-3. Can also play via computer mouse.
+1. Clone or downlaod the repository
+2. Run `index.html` and GlobalSynth will open in a new browser tab.
+3. Use computer keys `zsxdcvgbhnjm` (lower octave) `q2w3er5t6y7ui` (upper octave) to play.
+4. Can also play via computer mouse.
 
 ## Status
 ### Done
