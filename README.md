@@ -3,7 +3,7 @@ Copyright © 2017 Randy Rollofson
 
 GlobalSynth is a 2 oscillator subtractive synthesizer written in JavaScript and uses the Web Audio API. The synth runs completely inside the web browser (Chrome is recommended), no additional software is required.
 
-2 selectable oscillators (sine, saw, square, triangle) can be mixed with a noise generator (white, pink, brown) that run through a low pass filter, through an envelope filter (not yet implemented), through an effects unit, then to the output. An LFO is attached to the cutoff frequency of the low pass filter and can be adjusted (waveform, speed, frequency). The pitch of both oscillators can also be fine-tuned using the "detune" knobs.
+2 selectable oscillators (sine, saw, square, triangle) can be mixed with a noise generator (white, pink, brown) that run through a low pass filter, through an envelope filter (not yet implemented), through an effects unit, then to the output. An LFO is attached to the cutoff frequency of the low pass filter and can be adjusted (waveform, speed, depth). The pitch of both oscillators can be fine-tuned using the "detune" knobs.
 
 This is a work in progress and is playable via the computer keyboard or mouse.
 ## How To Use
