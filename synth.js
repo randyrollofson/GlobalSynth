@@ -28,7 +28,7 @@ var resonanceQ = 0;
 lowpass.type = "lowpass";
 lowpass.Q.value = resonanceQ;
 lowpass.gain.value = 0;
-lowpass.connect(delay);
+//lowpass.connect(envelope);
 
 //OSC 1 Volume
 var osc1Vol = context.createGain();
@@ -44,6 +44,14 @@ var osc2DetuneValue = -10.0;
 var noiseVol = context.createGain();
 var noiseGain = 0.0;
 noiseVol.gain.value = noiseGain;
+
+//Envelope
+var envelope = context.createGain();
+envelope.connect(delay);
+var attack = 0.2;
+var decay = 0.6;
+var sustain = 0.6;
+var release = 0.5;
 
 //Master Volume
 var masterVol = context.createGain();
@@ -297,11 +305,27 @@ function setOsc2Detune(value) {
     osc2DetuneValue = value;
 }
 
+function setAttack(value) {
+    attack = value;
+}
+
+function setDecay(value) {
+    decay = value;
+}
+
+function setSustain(value) {
+    sustain = value;
+}
+
+function setRelease(value) {
+    release = value;
+}
+
 function setDistortion(value) {
     if(value == 0.0) {
-        lowpass.connect(delay);
+        envelope.connect(delay);
     } else {
-        lowpass.connect(distortion);
+        envelope.connect(distortion);
     }
     distortion.curve = makeDistortionCurve(value);
     distortion.oversample = '4x';
@@ -381,6 +405,9 @@ function makeDistortionCurve(amount) {
     return curve;
 };
 
+//var startAt;
+//var releaseAt;
+
 function playPitch(key) {
     var osc1Waveform = document.getElementById('osc1Waveform');
     var osc2Waveform = document.getElementById('osc2Waveform');
@@ -425,9 +452,16 @@ function playPitch(key) {
     noise[key.oscIdx].loop = true;
     noiseVol.gain.value = noiseGain;
 
-    //Lowpass Filters
+    //Lowpass Filter
     lowpass.frequency.value = cutoffFreq;
     lowpass.Q.value = resonanceQ;
+
+    //Envelope
+    //startAt = context.currentTime;
+    //envelope.gain.cancelScheduledValues(startAt);
+    //envelope.gain.setValueAtTime(envelope.gain.value, startAt);
+    //envelope.linearRampToValueAtTime(1, now + 0.2);
+    //envelope.linearRampToValueAtTime(1, now + 0.3);
 
     //Master
     masterVol.gain.value = masterGain;
@@ -445,22 +479,37 @@ function playPitch(key) {
     noise[key.oscIdx].connect(noiseVol);
     noiseVol.connect(lowpass);
 
+    lowpass.connect(envelope);
+
     distortion.connect(delay);
     delay.connect(masterVol);
     masterVol.connect(context.destination);
 
     //Start
-    noise[key.oscIdx].start();
-    lfo[key.oscIdx].start();
-    osc1[key.oscIdx].start();
-    osc2[key.oscIdx].start();
+    var now = context.currentTime;
+    var attackEnd = now + attack;
+    envelope.gain.value = 0.0;
+    envelope.gain.cancelScheduledValues(now);
+    envelope.gain.setValueAtTime(0.0, now);
+    envelope.gain.linearRampToValueAtTime(masterGain, attackEnd);
+    envelope.gain.setTargetAtTime(sustain, attackEnd, decay);
+    noise[key.oscIdx].start(0);
+    lfo[key.oscIdx].start(0);
+    osc1[key.oscIdx].start(0);
+    osc2[key.oscIdx].start(0);
 }
 
 function stopPitch(key) {
-    noise[key.oscIdx].stop(0);
-    lfo[key.oscIdx].stop(0);
-    osc1[key.oscIdx].stop(0);
-    osc2[key.oscIdx].stop(0);
+    var now = context.currentTime;
+    var releaseEnd = now + release;
+    envelope.gain.cancelScheduledValues(now);
+    envelope.gain.setValueAtTime(envelope.gain.value, now);
+    envelope.gain.linearRampToValueAtTime(0.0, releaseEnd);
+    envelope.gain.setTargetAtTime(0.0, now, release);
+    noise[key.oscIdx].stop(releaseEnd);
+    lfo[key.oscIdx].stop(releaseEnd);
+    osc1[key.oscIdx].stop(releaseEnd);
+    osc2[key.oscIdx].stop(releaseEnd);
 }
 
 

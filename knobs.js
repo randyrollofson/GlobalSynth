@@ -194,8 +194,8 @@ $(document).ready(function(){
 
     $('#attackKnob').knob(
         {
-            'min': 0,
-            'max': 50,
+            'min': 0.0,
+            'max': 5.0,
             'width': 50,
             'height': 50,
             'displayInput': true,
@@ -203,7 +203,7 @@ $(document).ready(function(){
             'inputColor': "white",
             'angleArc': 350,
             'angleOffset': 5,
-            'step':1,
+            'step':0.1,
             'stopper': true,
             'release': function (v) {
                 //alert(v);
@@ -213,8 +213,8 @@ $(document).ready(function(){
 
     $('#decayKnob').knob(
         {
-            'min': 0,
-            'max': 50,
+            'min': 0.0,
+            'max': 5.0,
             'width': 50,
             'height': 50,
             'displayInput': true,
@@ -222,7 +222,7 @@ $(document).ready(function(){
             'inputColor': "white",
             'angleArc': 350,
             'angleOffset': 5,
-            'step':1,
+            'step':0.1,
             'stopper': true,
             'release': function (v) {
                 //alert(v);
@@ -232,8 +232,8 @@ $(document).ready(function(){
 
     $('#sustainKnob').knob(
         {
-            'min': 0,
-            'max': 50,
+            'min': 0.0,
+            'max': 5.0,
             'width': 50,
             'height': 50,
             'displayInput': true,
@@ -241,7 +241,7 @@ $(document).ready(function(){
             'inputColor': "white",
             'angleArc': 350,
             'angleOffset': 5,
-            'step':1,
+            'step':0.1,
             'stopper': true,
             'release': function (v) {
                 //alert(v);
@@ -251,8 +251,8 @@ $(document).ready(function(){
 
     $('#releaseKnob').knob(
         {
-            'min': 0,
-            'max': 50,
+            'min': 0.0,
+            'max': 5.0,
             'width': 50,
             'height': 50,
             'displayInput': true,
@@ -260,7 +260,7 @@ $(document).ready(function(){
             'inputColor': "white",
             'angleArc': 350,
             'angleOffset': 5,
-            'step':1,
+            'step':0.1,
             'stopper': true,
             'release': function (v) {
                 //alert(v);
