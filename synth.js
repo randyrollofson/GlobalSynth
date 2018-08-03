@@ -18,6 +18,7 @@ var delay = context.createDelay();
 //LFO
 var lfo = new Array(32);
 var lfoVol = context.createGain();
+var lfoWaveform = "sawtooth";
 var lfoFreq = 0;
 var lfoDepth = 500;
 
@@ -28,21 +29,28 @@ var resonanceQ = 0;
 lowpass.type = "lowpass";
 lowpass.Q.value = resonanceQ;
 lowpass.gain.value = 0;
-//lowpass.connect(envelope);
 
 //OSC 1 Volume
 var osc1Vol = context.createGain();
 var osc1Gain = 0.5;
 var osc1DetuneValue = 0.0;
+var osc1Waveform = "sawtooth";
 
 //OSC 2 Volume
 var osc2Vol = context.createGain();
 var osc2Gain = 0.5;
 var osc2DetuneValue = -10.0;
+var osc2Waveform = "sawtooth";
+
+//Mixer
+var osc1Knob = 50;
+var osc2Knob = 50;
+var noiseKnob = 0;
 
 //Noise
 var noiseVol = context.createGain();
 var noiseGain = 0.0;
+var noiseType = "brown";
 noiseVol.gain.value = noiseGain;
 
 //Envelope
@@ -53,9 +61,14 @@ var decay = 0.6;
 var sustain = 0.6;
 var release = 0.5;
 
+//Effects
+var distortionVal = 0;
+var delayVal = 0.0;
+
 //Master Volume
 var masterVol = context.createGain();
 var masterGain = 0.75;
+var masterGainVal = 75;
 
 //Key objects
 var C3 = {

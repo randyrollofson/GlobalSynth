@@ -12,31 +12,33 @@
 	<title> GlobalSynth </title> 	
     <link rel="stylesheet" type="text/css" href="keyboard.css">
     <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="http://localhost:8080/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/0.5.0/js/sql.js"></script>
 
     <!--Knob functionality used from this github repo (MIT license):
     https://github.com/aterrien/jQuery-Knob/blob/master/js/jquery.knob.js-->
     <script src="https://cdn.rawgit.com/aterrien/jQuery-Knob/755309e9/js/jquery.knob.js"></script>
-	<script src="synth.js"></script>
-    <script src="knobs.js"></script>
+	<script type="text/javascript" src="synth.js"></script>
+    <script type="text/javascript" src="knobs.js"></script>
 </head>
 <body>
     <div id="synthBody">
         <div id="lfoBorder" style="text-align:center">
             <h4><lfoText>LFO</lfoText></h4>
             <select id="lfoWaveform">
-                <option value="sine" selected>SINE</option>
+                <option value="sine">SINE</option>
                 <option value="square">SQUARE</option>
                 <option value="sawtooth">SAW</option>
                 <option value="triangle">TRIANGLE</option>
             </select>
             <div id="lfoFreqKnob">
-                <input type="text" value="0.0" class="lfoKnob" id="lfoFreq">
+                <input type="text" class="lfoKnob" id="lfoFreq">
                 <h5>Speed</h5>
             </div>
             <div id="lfoDepthKnob">
-                <input type="text" value="500" class="lfoKnob" id="lfoDepth">
+                <input type="text" class="lfoKnob" id="lfoDepth">
                 <h5>Depth</h5>
             </div>
         </div>
@@ -44,7 +46,7 @@
             <h4><noiseText>NOISE</noiseText></h4>
             <select id="noiseType">
                 <option value="white">WHITE</option>
-                <option value="pink" selected>PINK</option>
+                <option value="pink">PINK</option>
                 <option value="brown">BROWN</option>
             </select>
         </div>
@@ -53,11 +55,11 @@
             <select id="osc1Waveform">
                 <option value="sine">SINE</option>
                 <option value="square">SQUARE</option>
-                <option value="sawtooth" selected>SAW</option>
+                <option value="sawtooth">SAW</option>
                 <option value="triangle">TRIANGLE</option>
             </select>
             <div id="osc1DetuneKnob" style="text-align:center">
-                <input type="text" value="0.0" class="detuneKnob" id="osc1Detune">
+                <input type="text" class="detuneKnob" id="osc1Detune">
                 <h5>Detune</h5>
             </div>
         </div>
@@ -70,84 +72,95 @@
                 <option class="greenText" value="triangle">TRIANGLE</option>
             </select>
             <div id="osc2DetuneKnob" style="text-align:center">
-                <input type="text" value="-10.0" class="detuneKnob" id="osc2Detune">
+                <input type="text" class="detuneKnob" id="osc2Detune">
                 <h5>Detune</h5>
             </div>
         </div>
         <div id="mixerBorder">
             <h4><mixerText>MIXER</mixerText></h4>
             <div id="osc1VolKnob" style="text-align:center">
-                <input type="text" value="50" class="volumeKnob" id="osc1Knob">
+                <input type="text" class="volumeKnob" id="osc1Knob">
                 <h5>Osc 1</h5>
             </div>
             <div id="osc2VolKnob" style="text-align:center">
-                <input type="text" value="50" class="volumeKnob" id="osc2Knob">
+                <input type="text" class="volumeKnob" id="osc2Knob">
                 <h5>Osc 2</h5>
             </div>
             <div id="noiseVolKnob" style="text-align:center">
-                <input type="text" value="0" class="volumeKnob" id="noiseKnob">
+                <input type="text" class="volumeKnob" id="noiseKnob">
                 <h5>Noise</h5>
             </div>
         </div>
         <div id="filterBorder">
             <h4><filterText>FILTER</filterText></h4>
             <div id="cutoffKnob" style="text-align:center">
-                <input type="text" value="2500" class="cutoffKnob" id="cutoff">
+                <input type="text" class="cutoffKnob" id="cutoff">
                 <h5>Cutoff</h5>
             </div>
             <div id="resonanceKnob" style="text-align:center">
-                <input type="text" value="0" class="resonanceKnob" id="resonance">
+                <input type="text" class="resonanceKnob" id="resonance">
                 <h5>Resonance</h5>
             </div>
         </div>
         <div id="envelopeBorder">
             <h4><envelopeText>ENVELOPE</envelopeText></h4>
             <div id="attackEnvelopeKnob" style="text-align:center">
-                <input type="text" value="0.2" class="attackKnob" id="attackKnob">
+                <input type="text" class="attackKnob" id="attackKnob">
                 <h5>Attack</h5>
             </div>
             <div id="decayEnvelopeKnob" style="text-align:center">
-                <input type="text" value="0.6" class="decayKnob" id="decayKnob">
+                <input type="text" class="decayKnob" id="decayKnob">
                 <h5>Decay</h5>
             </div>
             <div id="sustainEnvelopeKnob" style="text-align:center">
-                <input type="text" value="0.6" class="sustainKnob" id="sustainKnob">
+                <input type="text" class="sustainKnob" id="sustainKnob">
                 <h5>Sustain</h5>
             </div>
             <div id="releaseEnvelopeKnob" style="text-align:center">
-                <input type="text" value="0.5" class="releaseKnob" id="releaseKnob">
+                <input type="text" class="releaseKnob" id="releaseKnob">
                 <h5>Release</h5>
             </div>
         </div>
         <div id="effectsBorder">
             <h4><effectsText>EFFECTS</effectsText></h4>
             <div id="delayEffectsKnob" style="text-align:center">
-                <input type="text" value="0.0" class="delayKnob" id="delayKnob">
+                <input type="text" class="delayKnob" id="delayKnob">
                 <h5>Delay</h5>
             </div>
             <div id="distortionEffectsKnob" style="text-align:center">
-                <input type="text" value="0.0" class="distortionKnob" id="distortionKnob">
+                <input type="text" class="distortionKnob" id="distortionKnob">
                 <h5>Distortion</h5>
             </div>
         </div>
         <div id="masterBorder">
             <h4><masterText>MASTER</masterText></h4>
             <div id="masterVolKnob" style="text-align:center">
-                <input type="text" value="75" class="volumeKnob" id="masterKnob">
+                <input type="text" class="volumeKnob" id="masterKnob">
                 <h5>Volume</h5>
             </div>
         </div>
         <div id="presetContainer">
             <h4><presetText>PRESETS</presetText></h4>
             <select class="presetBox" id="preBox" size="20" multiple>
-                <option value="math" selected>Default</option>
-                <option value="cs">Phat Lead</option>
-                <option value="physics">Siyok</option>
+                <option value="Default" onclick="loadPreset(value)" selected>Default</option>
+                <option value="Lead">Phat Lead</option>
+                <option value="Siyok">Siyok</option>
             </select>
             <button id="saveButton" onclick="savePreset()">SAVE</button>
             <p id="demo"></p>
 
             <script>
+                function loadPreset(value) {
+                    var objectSocket = io.connect('http://localhost:8080/');
+
+                    objectSocket.emit('loadPreset', value);
+
+                    objectSocket.on('loadPreset', function(objectData) {
+                        console.log(objectData);
+                    });
+                }
+
+
                 function savePreset() {
                     var preset = prompt("Please enter preset name:", "Preset Name");
                     var x = document.getElementById("preBox");
@@ -158,8 +171,6 @@
             </script>
 
         </div>
-
-
     </div>
     <h1><logo>GlobalSynth</logo></h1>
     <div id="leftSide"></div>
@@ -192,7 +203,39 @@
         <div class="blackKey up" id="ASharp4" onmousedown="mouseDownHandler(55, 'ASharp4')" onmouseup="mouseUpHandler()"></div>
    </div>
 
+    <!--Load preset-->
     <script type="text/javascript">
+        jQuery("#lfoWaveform").val(lfoWaveform);
+        jQuery("#lfoFreq").val(lfoFreq);
+        jQuery("#lfoDepth").val(lfoDepth);
+
+        jQuery("#noiseType").val(noiseType);
+
+        jQuery("#osc1Waveform").val(osc1Waveform);
+        jQuery("#osc1Detune").val(osc1DetuneValue);
+
+        jQuery("#osc2Waveform").val(osc2Waveform);
+        jQuery("#osc2Detune").val(osc2DetuneValue);
+
+        jQuery("#osc1Knob").val(osc1Knob);
+        jQuery("#osc2Knob").val(osc2Knob);
+        jQuery("#noiseKnob").val(noiseKnob);
+
+        jQuery("#cutoff").val(cutoffFreq);
+        jQuery("#resonance").val(resonanceQ);
+
+        jQuery("#attackKnob").val(attack);
+        jQuery("#decayKnob").val(decay);
+        jQuery("#sustainKnob").val(sustain);
+        jQuery("#releaseKnob").val(release);
+
+        jQuery("#distortionKnob").val(distortionVal);
+        jQuery("#delayKnob").val(delayVal);
+
+        jQuery("#masterKnob").val(masterGainVal);
+
+
+
         var objectSocket = io.connect('http://localhost:8080/');
 
         // objectSocket.on('message', function(objectData) {
