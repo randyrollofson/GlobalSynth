@@ -136,6 +136,29 @@
                 <h5>Volume</h5>
             </div>
         </div>
+        <div id="presetContainer">
+            <h4><presetText>PRESETS</presetText></h4>
+            <select class="presetBox" id="preBox" size="20" multiple>
+                <option value="math" selected>Default</option>
+                <option value="cs">Phat Lead</option>
+                <option value="physics">Siyok</option>
+            </select>
+            <button id="saveButton" onclick="savePreset()">SAVE</button>
+            <p id="demo"></p>
+
+            <script>
+                function savePreset() {
+                    var preset = prompt("Please enter preset name:", "Preset Name");
+                    var x = document.getElementById("preBox");
+                    var option = document.createElement("option");
+                    option.text = preset;
+                    x.add(option);
+                }
+            </script>
+
+        </div>
+
+
     </div>
     <h1><logo>GlobalSynth</logo></h1>
     <div id="leftSide"></div>

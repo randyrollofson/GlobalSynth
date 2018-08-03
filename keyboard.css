@@ -562,3 +562,58 @@ logo {
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
 }
+
+#presetBox {
+    position:absolute;
+    left:1050px;
+    width:300px;
+    height:700px;
+    background:grey;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+#presetContainer {
+    position:absolute;
+    left:1000px;
+    width:300px;
+    height:700px;
+    background:#2c333a;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+presetText {
+    position: absolute;
+    font-family: 'Orbitron', sans-serif;
+    color:white;
+    margin-top: .5em;
+    margin-bottom: .5em;
+    left:100px;
+}
+
+.presetBox {
+    position: absolute;
+    top:60px;
+    width:300px;
+    height:550px;
+    background:grey;
+    text-align: center;
+    vertical-align: text-top;
+    font-size:18px;
+}
+
+#saveButton {
+    position: absolute;
+    font-family: 'Orbitron', sans-serif;
+    left:100px;
+    top:635px;
+    width:80px;
+    height:40px;
+    background:grey;
+    text-align: center;
+    vertical-align: text-top;
+    font-size:18px;
+}
