@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="keyboard.css">
     <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://localhost:8080/socket.io/socket.io.js"></script>
 
     <!--Knob functionality used from this github repo (MIT license):
     https://github.com/aterrien/jQuery-Knob/blob/master/js/jquery.knob.js-->
@@ -190,5 +191,16 @@
         <div class="blackKey up" id="GSharp4" onmousedown="mouseDownHandler(54, 'GSharp4')" onmouseup="mouseUpHandler()"></div>
         <div class="blackKey up" id="ASharp4" onmousedown="mouseDownHandler(55, 'ASharp4')" onmouseup="mouseUpHandler()"></div>
    </div>
+
+    <script type="text/javascript">
+        var objectSocket = io.connect('http://localhost:8080/');
+
+        // objectSocket.on('message', function(objectData) {
+        //     jQuery('#output')
+        //         .append(objectData.intTimestamp + ': ' + objectData.strMessage + '\n')
+        //     ;
+        // });
+
+    </script>
 </body>
 </html>
