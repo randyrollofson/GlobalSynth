@@ -18,7 +18,7 @@ var delay = context.createDelay();
 //LFO
 var lfo = new Array(32);
 var lfoVol = context.createGain();
-var lfoWaveform = "sawtooth";
+var lfoWaveform = "sine";
 var lfoFreq = 0;
 var lfoDepth = 500;
 
@@ -33,13 +33,13 @@ lowpass.gain.value = 0;
 //OSC 1 Volume
 var osc1Vol = context.createGain();
 var osc1Gain = 0.5;
-var osc1DetuneValue = 0.0;
+var osc1DetuneValue = 0;
 var osc1Waveform = "sawtooth";
 
 //OSC 2 Volume
 var osc2Vol = context.createGain();
 var osc2Gain = 0.5;
-var osc2DetuneValue = -10.0;
+var osc2DetuneValue = -10;
 var osc2Waveform = "sawtooth";
 
 //Mixer
@@ -62,7 +62,7 @@ var sustain = 0.6;
 var release = 0.5;
 
 //Effects
-var distortionVal = 0;
+var distortionVal = 0.0;
 var delayVal = 0.0;
 
 //Master Volume
@@ -524,6 +524,96 @@ function stopPitch(key) {
     osc1[key.oscIdx].stop(releaseEnd);
     osc2[key.oscIdx].stop(releaseEnd);
 }
+
+function loadPreset(value) {
+    var objectSocket = io.connect();
+
+    objectSocket.emit('loadPreset', value);
+
+    objectSocket.on('loadPreset', function (objectData) {
+        $('#lfoWaveform').val(objectData[0].lfo_wave);
+        $('#noiseType').val(objectData[0].noise_type);
+        $('#osc1Waveform').val(objectData[0].osc1_wave);
+        $('#osc2Waveform').val(objectData[0].osc2_wave);
+
+        $('#osc1Knob')
+            .val(objectData[0].mixer_osc1)
+            .trigger('change');
+
+
+        $('#osc2Knob')
+            .val(objectData[0].mixer_osc2)
+            .trigger('change');
+
+
+        $('#noiseKnob')
+            .val(objectData[0].mixer_noise)
+            .trigger('change');
+
+        $('#masterKnob')
+            .val(objectData[0].master_volume)
+            .trigger('change');
+
+        $('#cutoff')
+            .val(objectData[0].cutoff)
+            .trigger('change');
+
+        $('#resonance')
+            .val(objectData[0].resonance)
+            .trigger('change');
+
+        $('#lfoFreq')
+            .val(objectData[0].lfo_speed)
+            .trigger('change');
+
+        $('#lfoDepth')
+            .val(objectData[0].lfo_depth)
+            .trigger('change');
+
+        $('#osc1Detune')
+            .val(objectData[0].osc1_detune)
+            .trigger('change');
+
+        $('#osc2Detune')
+            .val(objectData[0].osc2_detune)
+            .trigger('change');
+
+        $('#attackKnob')
+            .val(objectData[0].attack)
+            .trigger('change');
+
+        $('#decayKnob')
+            .val(objectData[0].decay)
+            .trigger('change');
+
+        $('#sustainKnob')
+            .val(objectData[0].sustain)
+            .trigger('change');
+
+        $('#releaseKnob')
+            .val(objectData[0].release)
+            .trigger('change');
+
+        $('#delayKnob')
+            .val(objectData[0].delay)
+            .trigger('change');
+
+        $('#distortionKnob')
+            .val(objectData[0].distortion)
+            .trigger('change');
+    });
+}
+
+function savePreset() {
+    var preset = prompt("Please enter preset name:", "Preset Name");
+    var x = document.getElementById("preBox");
+    var option = document.createElement("option");
+    if (preset != null) {
+        option.text = preset;
+        x.add(option);
+    }
+}
+
 
 
 

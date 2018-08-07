@@ -289,8 +289,8 @@ $(document).ready(function(){
 
     $('#distortionKnob').knob(
         {
-            'min': 0,
-            'max': 500,
+            'min': 0.0,
+            'max': 500.0,
             'width': 50,
             'height': 50,
             'displayInput': true,
@@ -298,7 +298,7 @@ $(document).ready(function(){
             'inputColor': "white",
             'angleArc': 350,
             'angleOffset': 5,
-            'step':1,
+            'step':1.0,
             'stopper': true,
             'release': function (v) {
                 //alert(v);

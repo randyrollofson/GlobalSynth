@@ -12,9 +12,8 @@
 	<title> GlobalSynth </title> 	
     <link rel="stylesheet" type="text/css" href="keyboard.css">
     <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
-    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript" src="http://localhost:8080/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/0.5.0/js/sql.js"></script>
 
     <!--Knob functionality used from this github repo (MIT license):
@@ -141,35 +140,13 @@
         </div>
         <div id="presetContainer">
             <h4><presetText>PRESETS</presetText></h4>
-            <select class="presetBox" id="preBox" size="20" multiple>
-                <option value="Default" onclick="loadPreset(value)" selected>Default</option>
-                <option value="Lead">Phat Lead</option>
+            <select class="presetBox" id="preBox" size="20" multiple onclick="loadPreset(value)">
+                <option value="Default" selected>Default</option>
+                <option value="Phat Lead">Phat Lead</option>
                 <option value="Siyok">Siyok</option>
             </select>
             <button id="saveButton" onclick="savePreset()">SAVE</button>
             <p id="demo"></p>
-
-            <script>
-                function loadPreset(value) {
-                    var objectSocket = io.connect('http://localhost:8080/');
-
-                    objectSocket.emit('loadPreset', value);
-
-                    objectSocket.on('loadPreset', function(objectData) {
-                        console.log(objectData);
-                    });
-                }
-
-
-                function savePreset() {
-                    var preset = prompt("Please enter preset name:", "Preset Name");
-                    var x = document.getElementById("preBox");
-                    var option = document.createElement("option");
-                    option.text = preset;
-                    x.add(option);
-                }
-            </script>
-
         </div>
     </div>
     <h1><logo>GlobalSynth</logo></h1>
@@ -203,7 +180,7 @@
         <div class="blackKey up" id="ASharp4" onmousedown="mouseDownHandler(55, 'ASharp4')" onmouseup="mouseUpHandler()"></div>
    </div>
 
-    <!--Load preset-->
+    <!--Load default preset on startup-->
     <script type="text/javascript">
         jQuery("#lfoWaveform").val(lfoWaveform);
         jQuery("#lfoFreq").val(lfoFreq);
@@ -233,17 +210,6 @@
         jQuery("#delayKnob").val(delayVal);
 
         jQuery("#masterKnob").val(masterGainVal);
-
-
-
-        var objectSocket = io.connect('http://localhost:8080/');
-
-        // objectSocket.on('message', function(objectData) {
-        //     jQuery('#output')
-        //         .append(objectData.intTimestamp + ': ' + objectData.strMessage + '\n')
-        //     ;
-        // });
-
     </script>
 </body>
 </html>
