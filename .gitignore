@@ -2,3 +2,5 @@
 *.idea
 dependency-reduced-pom.xml
 *.iml
+
+globalsynth_presets.db
