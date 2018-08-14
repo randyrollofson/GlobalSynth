@@ -140,13 +140,10 @@
         </div>
         <div id="presetContainer">
             <h4><presetText>PRESETS</presetText></h4>
-            <select class="presetBox" id="preBox" size="20" multiple onclick="loadPreset(value)">
+            <select class="presetBox" id="preBox" size="200" multiple onclick="loadPreset(value)">
                 <option value="Default" selected>Default</option>
-                <option value="Phat Lead">Phat Lead</option>
-                <option value="Siyok">Siyok</option>
             </select>
             <button id="saveButton" onclick="savePreset()">SAVE</button>
-            <p id="demo"></p>
         </div>
     </div>
     <h1><logo>GlobalSynth</logo></h1>
@@ -179,6 +176,10 @@
         <div class="blackKey up" id="GSharp4" onmousedown="mouseDownHandler(54, 'GSharp4')" onmouseup="mouseUpHandler()"></div>
         <div class="blackKey up" id="ASharp4" onmousedown="mouseDownHandler(55, 'ASharp4')" onmouseup="mouseUpHandler()"></div>
    </div>
+
+    <script>
+        loadAllPresets();
+    </script>
 
     <!--Load default preset on startup-->
     <script type="text/javascript">

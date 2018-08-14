@@ -430,7 +430,7 @@ function playPitch(key) {
     var wave1 = osc1Waveform.options[osc1Waveform.selectedIndex].value;
     var wave2 = osc2Waveform.options[osc2Waveform.selectedIndex].value;
     var noiseValue = noiseType.options[noiseType.selectedIndex].value;
-    console.log(noiseValue);
+    //console.log(noiseValue);
     if(noiseValue == "white") {
         createWhiteNoise();
     } else if(noiseValue == "pink") {
@@ -606,14 +606,82 @@ function loadPreset(value) {
 
 function savePreset() {
     var preset = prompt("Please enter preset name:", "Preset Name");
-    var x = document.getElementById("preBox");
+    var presetMenu = document.getElementById("preBox");
+    // var nameUsed = false;
+
+    for (var i = 0; i < presetMenu.length; i++) {
+        if (presetMenu[i].value === preset) {
+            alert("Preset name already used");
+            return;
+        }
+    }
     var option = document.createElement("option");
     if (preset != null) {
         option.text = preset;
-        x.add(option);
+        presetMenu.add(option);
     }
+
+    var osc1Waveform = document.getElementById('osc1Waveform');
+    var osc2Waveform = document.getElementById('osc2Waveform');
+    var lfoWaveform = document.getElementById('lfoWaveform');
+    var noiseType = document.getElementById('noiseType');
+    var lfoWave = lfoWaveform.options[lfoWaveform.selectedIndex].value;
+    var wave1 = osc1Waveform.options[osc1Waveform.selectedIndex].value;
+    var wave2 = osc2Waveform.options[osc2Waveform.selectedIndex].value;
+    var noiseValue = noiseType.options[noiseType.selectedIndex].value;
+
+    var data = {
+        preset_name: preset,
+        lfo_wave: lfoWave,
+        lfo_speed: lfoFreq,
+        lfo_depth: lfoDepth,
+        noise_type: noiseValue,
+        osc1_wave: wave1,
+        osc1_detune: osc1DetuneValue,
+        osc2_wave: wave2,
+        osc2_detune: osc2DetuneValue,
+        mixer_osc1: osc1Knob,
+        mixer_osc2: osc2Knob,
+        mixer_noise: noiseKnob,
+        cutoff: cutoffFreq,
+        resonance: resonanceQ,
+        attack: attack,
+        decay: decay,
+        sustain: sustain,
+        release: release,
+        distortion: distortionVal,
+        delay: delayVal,
+        master_volume: masterGainVal,
+    };
+
+    var objectSocket = io.connect();
+
+    objectSocket.emit('savePreset', data);
+
+    // for (var j = 0; i < presetMenu.length; j++) {
+    //     if (presetMenu[j].value !== preset) {
+    //         $('#preBox').val(preset);
+    //     }
+    // }
+    $('#preBox').val(preset);
 }
 
+function loadAllPresets() {
+    var objectSocket = io.connect();
 
+    objectSocket.emit('loadAllPresets');
 
+    objectSocket.on('loadAllPresets', function (objectData) {
+        var presetName = document.getElementById("preBox");
 
+        for (var i = 0; i < objectData.length; i++) {
+            if (objectData[i].preset_name !== "Default") {
+                var option = document.createElement("option");
+                if (objectData[i].preset_name !== null) {
+                    option.text = objectData[i].preset_name;
+                    presetName.add(option);
+                }
+            }
+        }
+    });
+}
