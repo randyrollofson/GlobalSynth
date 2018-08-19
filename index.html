@@ -179,38 +179,7 @@
 
     <script>
         loadAllPresets();
-    </script>
-
-    <!--Load default preset on startup-->
-    <script type="text/javascript">
-        jQuery("#lfoWaveform").val(lfoWaveform);
-        jQuery("#lfoFreq").val(lfoFreq);
-        jQuery("#lfoDepth").val(lfoDepth);
-
-        jQuery("#noiseType").val(noiseType);
-
-        jQuery("#osc1Waveform").val(osc1Waveform);
-        jQuery("#osc1Detune").val(osc1DetuneValue);
-
-        jQuery("#osc2Waveform").val(osc2Waveform);
-        jQuery("#osc2Detune").val(osc2DetuneValue);
-
-        jQuery("#osc1Knob").val(osc1Knob);
-        jQuery("#osc2Knob").val(osc2Knob);
-        jQuery("#noiseKnob").val(noiseKnob);
-
-        jQuery("#cutoff").val(cutoffFreq);
-        jQuery("#resonance").val(resonanceQ);
-
-        jQuery("#attackKnob").val(attack);
-        jQuery("#decayKnob").val(decay);
-        jQuery("#sustainKnob").val(sustain);
-        jQuery("#releaseKnob").val(release);
-
-        jQuery("#distortionKnob").val(distortionVal);
-        jQuery("#delayKnob").val(delayVal);
-
-        jQuery("#masterKnob").val(masterGainVal);
+        loadPreset("Default");
     </script>
 </body>
 </html>

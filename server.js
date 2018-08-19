@@ -19,8 +19,9 @@ var db = new sqlite3.Database('./globalsynth_presets.db');
 
 // db.run("INSERT into globalsynth_presets VALUES ('Default', 'sine', 0.0, 500, 'brown', 'sawtooth', 0, 'sawtooth', -10, 50, 50, 0, 2500, 0, 0.2, 0.6, 0.6, 0.5, 0.0, 0.0, 75)");
 // db.run("INSERT into globalsynth_presets VALUES ('Phat Lead', 'sine', 1.8, 113, 'brown', 'sawtooth', 0, 'sawtooth', -19, 50, 50, 35, 2500, 6, 0.0, 0.0, 0.0, 0.0, 83.0, 0.0, 75)");
-
-db.run("DELETE FROM globalsynth_presets WHERE preset_name like '%Test%'");
+// db.run("UPDATE globalsynth_presets SET attack = 0.0, decay = 0.0, sustain = 0.0, release = 0.0");
+// db.run("DELETE FROM globalsynth_presets WHERE preset_name like '%Test%'");
+// db.run("DELETE FROM globalsynth_presets WHERE preset_name = 'Strings'");
 
 db.all("SELECT * FROM globalsynth_presets", function(err, rows) {
     if(err) {
@@ -33,10 +34,8 @@ db.all("SELECT * FROM globalsynth_presets", function(err, rows) {
 db.close();
 
 io.on('connection', function(objectSocket) {
-    //console.log('client connected');
 
     objectSocket.on('loadPreset', function(presetName) {
-        console.log(presetName);
         var db = new sqlite3.Database('./globalsynth_presets.db');
 
         var query = "SELECT * FROM globalsynth_presets WHERE preset_name = " + '"' + presetName + '"';
@@ -52,11 +51,9 @@ io.on('connection', function(objectSocket) {
     });
 
     objectSocket.on('savePreset', function(presetData) {
-        //console.log(presetData.preset_name);
         var db = new sqlite3.Database('./globalsynth_presets.db');
 
         var query = "INSERT INTO globalsynth_presets VALUES (" + "'" + presetData.preset_name + "'" + ", " + "'" + presetData.lfo_wave + "'" + ", " + presetData.lfo_speed + ", " + presetData.lfo_depth + ", " + "'" + presetData.noise_type + "'" + ", " + "'" + presetData.osc1_wave + "'" + ", " + presetData.osc1_detune + ", " + "'" + presetData.osc2_wave + "'" + ", " + presetData.osc2_detune + ", " + presetData.mixer_osc1 + ", " + presetData.mixer_osc2 + ", " + presetData.mixer_noise + ", " + presetData.cutoff + ", " + presetData.resonance + ", " + presetData.attack + ", " + presetData.decay + ", " + presetData.sustain + ", " + presetData.release + ", " + presetData.distortion + ", " + presetData.delay + ", " + presetData.master_volume + ")";
-        //console.log(query);
 
         db.all(query, function(err, rows) {
             if(err) {
@@ -76,14 +73,9 @@ io.on('connection', function(objectSocket) {
             if(err) {
                 console.log(err);
             }
-            //console.log(rows);
             io.emit('loadAllPresets', rows);
         });
 
         db.close();
     });
-
-    // objectSocket.on('disconnect', function() {
-    //     console.log('client disconnected');
-    // });
 });

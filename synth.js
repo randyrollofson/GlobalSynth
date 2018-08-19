@@ -56,10 +56,10 @@ noiseVol.gain.value = noiseGain;
 //Envelope
 var envelope = context.createGain();
 envelope.connect(delay);
-var attack = 0.2;
-var decay = 0.6;
-var sustain = 0.6;
-var release = 0.5;
+var attack = 0.0;
+var decay = 0.0;
+var sustain = 0.0;
+var release = 0.0;
 
 //Effects
 var distortionVal = 0.0;
@@ -658,11 +658,6 @@ function savePreset() {
 
     objectSocket.emit('savePreset', data);
 
-    // for (var j = 0; i < presetMenu.length; j++) {
-    //     if (presetMenu[j].value !== preset) {
-    //         $('#preBox').val(preset);
-    //     }
-    // }
     $('#preBox').val(preset);
 }
 
