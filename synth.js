@@ -68,7 +68,6 @@ var delayVal = 0.0;
 //Master Volume
 var masterVol = context.createGain();
 var masterGain = 0.75;
-var masterGainVal = 75;
 
 //Key objects
 var C3 = {
@@ -551,7 +550,7 @@ function loadPreset(value) {
             .trigger('change');
 
         $('#masterKnob')
-            .val(objectData[0].master_volume)
+            .val(objectData[0].master_volume * 100)
             .trigger('change');
 
         $('#cutoff')
@@ -607,7 +606,6 @@ function loadPreset(value) {
 function savePreset() {
     var preset = prompt("Please enter preset name:", "Preset Name");
     var presetMenu = document.getElementById("preBox");
-    // var nameUsed = false;
 
     for (var i = 0; i < presetMenu.length; i++) {
         if (presetMenu[i].value === preset) {
@@ -651,7 +649,7 @@ function savePreset() {
         release: release,
         distortion: distortionVal,
         delay: delayVal,
-        master_volume: masterGainVal,
+        master_volume: masterGain,
     };
 
     var objectSocket = io.connect();
@@ -667,14 +665,16 @@ function loadAllPresets() {
     objectSocket.emit('loadAllPresets');
 
     objectSocket.on('loadAllPresets', function (objectData) {
-        var presetName = document.getElementById("preBox");
+        if ($('#preBox option').length === 1) {
+            var presetName = document.getElementById("preBox");
 
-        for (var i = 0; i < objectData.length; i++) {
-            if (objectData[i].preset_name !== "Default") {
-                var option = document.createElement("option");
-                if (objectData[i].preset_name !== null) {
-                    option.text = objectData[i].preset_name;
-                    presetName.add(option);
+            for (var i = 0; i < objectData.length; i++) {
+                if (objectData[i].preset_name !== "Default") {
+                    var option = document.createElement("option");
+                    if (objectData[i].preset_name !== null) {
+                        option.text = objectData[i].preset_name;
+                        presetName.add(option);
+                    }
                 }
             }
         }

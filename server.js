@@ -19,9 +19,9 @@ var db = new sqlite3.Database('./globalsynth_presets.db');
 
 // db.run("INSERT into globalsynth_presets VALUES ('Default', 'sine', 0.0, 500, 'brown', 'sawtooth', 0, 'sawtooth', -10, 50, 50, 0, 2500, 0, 0.2, 0.6, 0.6, 0.5, 0.0, 0.0, 75)");
 // db.run("INSERT into globalsynth_presets VALUES ('Phat Lead', 'sine', 1.8, 113, 'brown', 'sawtooth', 0, 'sawtooth', -19, 50, 50, 35, 2500, 6, 0.0, 0.0, 0.0, 0.0, 83.0, 0.0, 75)");
-// db.run("UPDATE globalsynth_presets SET attack = 0.0, decay = 0.0, sustain = 0.0, release = 0.0");
+// db.run("UPDATE globalsynth_presets SET master_volume = 0.75");
 // db.run("DELETE FROM globalsynth_presets WHERE preset_name like '%Test%'");
-// db.run("DELETE FROM globalsynth_presets WHERE preset_name = 'Strings'");
+// db.run("DELETE FROM globalsynth_presets WHERE preset_name = 'null'");
 
 db.all("SELECT * FROM globalsynth_presets", function(err, rows) {
     if(err) {
