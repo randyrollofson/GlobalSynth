@@ -429,7 +429,7 @@ function playPitch(key) {
     var wave1 = osc1Waveform.options[osc1Waveform.selectedIndex].value;
     var wave2 = osc2Waveform.options[osc2Waveform.selectedIndex].value;
     var noiseValue = noiseType.options[noiseType.selectedIndex].value;
-    //console.log(noiseValue);
+
     if(noiseValue == "white") {
         createWhiteNoise();
     } else if(noiseValue == "pink") {
@@ -613,6 +613,16 @@ function savePreset() {
             return;
         }
     }
+
+    if (preset === "Preset Name") {
+        alert("Please enter a different preset name");
+        return;
+    }
+
+    if (preset === null) {
+        return;
+    }
+
     var option = document.createElement("option");
     if (preset != null) {
         option.text = preset;

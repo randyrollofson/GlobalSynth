@@ -22,6 +22,8 @@ var db = new sqlite3.Database('./globalsynth_presets.db');
 // db.run("UPDATE globalsynth_presets SET master_volume = 0.75");
 // db.run("DELETE FROM globalsynth_presets WHERE preset_name like '%Test%'");
 // db.run("DELETE FROM globalsynth_presets WHERE preset_name = 'null'");
+// db.run("DELETE FROM globalsynth_presets WHERE preset_name = 'Preset Name'");
+
 
 db.all("SELECT * FROM globalsynth_presets", function(err, rows) {
     if(err) {
