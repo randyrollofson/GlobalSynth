@@ -590,6 +590,76 @@ function loadPreset(value) {
     });
 }
 
+function savePreset() {
+    var preset = prompt("Please enter preset name:", "Preset Name");
+    var presetMenu = document.getElementById("preBox");
+
+    for (var i = 0; i < presetMenu.length; i++) {
+        if (presetMenu[i].value === preset) {
+            alert("Preset name already used");
+            return;
+        }
+    }
+
+    if (preset === "Preset Name") {
+        alert("Please enter a different preset name");
+        return;
+    }
+
+    if (preset === null) {
+        return;
+    }
+
+    var option = document.createElement("option");
+    if (preset != null) {
+        option.text = preset;
+        presetMenu.add(option);
+    }
+
+    var osc1Waveform = document.getElementById('osc1Waveform');
+    var osc2Waveform = document.getElementById('osc2Waveform');
+    var lfoWaveform = document.getElementById('lfoWaveform');
+    var noiseType = document.getElementById('noiseType');
+    var lfoWave = lfoWaveform.options[lfoWaveform.selectedIndex].value;
+    var wave1 = osc1Waveform.options[osc1Waveform.selectedIndex].value;
+    var wave2 = osc2Waveform.options[osc2Waveform.selectedIndex].value;
+    var noiseValue = noiseType.options[noiseType.selectedIndex].value;
+
+    var data = {
+        PresetName: preset,
+        LfoWave: lfoWave,
+        LfoSpeed: lfoFreq,
+        LfoDepth: lfoDepth,
+        NoiseType: noiseValue,
+        Osc1Wave: wave1,
+        Osc1Detune: osc1DetuneValue,
+        Osc2Wave: wave2,
+        Osc2Detune: osc2DetuneValue,
+        Osc1Mixer: osc1Knob,
+        Osc2Mixer: osc2Knob,
+        MixerNoise: noiseKnob,
+        Cutoff: cutoffFreq,
+        Resonance: resonanceQ,
+        Attack: attack,
+        Decay: decay,
+        Sustain: sustain,
+        Release: release,
+        Distortion: distortionVal,
+        Delay: delayVal,
+        MasterVolume: masterGain * 100,
+    };
+
+    $.ajax({
+        url: 'https://t40zzwlkf8.execute-api.us-west-2.amazonaws.com/dev/insertpreset',
+        cache: false,
+        type: "POST",
+        data: JSON.stringify(data),
+        success: function (data) {
+            $('#preBox').val(preset);
+        }
+    });
+}
+
 function loadAllPresets() {
     $.ajax({
         url: 'https://b347d3ott3.execute-api.us-west-2.amazonaws.com/dev/listpresets',
@@ -604,5 +674,5 @@ function loadAllPresets() {
                 }
             }
         }
-    })
+    });
 }
