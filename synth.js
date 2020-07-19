@@ -229,6 +229,7 @@ keys[85] = B4;
 keys[73] = C5;
 
 function keyDownHandler(ev) {
+    context.resume();
     var keyDown = document.getElementById(keys[ev.keyCode].id);
     keyDown.style.backgroundColor='lightgrey';
     if (keyDown.classList.contains("down"))
@@ -525,168 +526,83 @@ function stopPitch(key) {
 }
 
 function loadPreset(value) {
-    var objectSocket = io.connect();
-
-    objectSocket.emit('loadPreset', value);
-
-    objectSocket.on('loadPreset', function (objectData) {
-        $('#lfoWaveform').val(objectData[0].lfo_wave);
-        $('#noiseType').val(objectData[0].noise_type);
-        $('#osc1Waveform').val(objectData[0].osc1_wave);
-        $('#osc2Waveform').val(objectData[0].osc2_wave);
-
-        $('#osc1Knob')
-            .val(objectData[0].mixer_osc1)
-            .trigger('change');
-
-
-        $('#osc2Knob')
-            .val(objectData[0].mixer_osc2)
-            .trigger('change');
-
-
-        $('#noiseKnob')
-            .val(objectData[0].mixer_noise)
-            .trigger('change');
-
-        $('#masterKnob')
-            .val(objectData[0].master_volume * 100)
-            .trigger('change');
-
-        $('#cutoff')
-            .val(objectData[0].cutoff)
-            .trigger('change');
-
-        $('#resonance')
-            .val(objectData[0].resonance)
-            .trigger('change');
-
-        $('#lfoFreq')
-            .val(objectData[0].lfo_speed)
-            .trigger('change');
-
-        $('#lfoDepth')
-            .val(objectData[0].lfo_depth)
-            .trigger('change');
-
-        $('#osc1Detune')
-            .val(objectData[0].osc1_detune)
-            .trigger('change');
-
-        $('#osc2Detune')
-            .val(objectData[0].osc2_detune)
-            .trigger('change');
-
-        $('#attackKnob')
-            .val(objectData[0].attack)
-            .trigger('change');
-
-        $('#decayKnob')
-            .val(objectData[0].decay)
-            .trigger('change');
-
-        $('#sustainKnob')
-            .val(objectData[0].sustain)
-            .trigger('change');
-
-        $('#releaseKnob')
-            .val(objectData[0].release)
-            .trigger('change');
-
-        $('#delayKnob')
-            .val(objectData[0].delay)
-            .trigger('change');
-
-        $('#distortionKnob')
-            .val(objectData[0].distortion)
-            .trigger('change');
+    $.ajax({
+        url: 'https://p4ypxjini3.execute-api.us-west-2.amazonaws.com/dev/getpresetbyname',
+        cache: false,
+        type: "GET",
+        data: {
+            "PresetName": value
+        },
+        success: function (data) {
+            $('#lfoWaveform').val(data.Item.LfoWave);
+            $('#noiseType').val(data.Item.NoiseType);
+            $('#osc1Waveform').val(data.Item.Osc1Wave);
+            $('#osc2Waveform').val(data.Item.Osc2Wave);
+            $('#osc1Knob')
+                .val(data.Item.Osc1Mixer)
+                .trigger('change');
+            $('#osc2Knob')
+                .val(data.Item.Osc2Mixer)
+                .trigger('change');
+            $('#noiseKnob')
+                .val(data.Item.MixerNoise)
+                .trigger('change');
+            $('#masterKnob')
+                .val(data.Item.MasterVolume)
+                .trigger('change');
+            $('#cutoff')
+                .val(data.Item.Cutoff)
+                .trigger('change');
+            $('#resonance')
+                .val(data.Item.Resonance)
+                .trigger('change');
+            $('#lfoFreq')
+                .val(data.Item.LfoSpeed)
+                .trigger('change');
+            $('#lfoDepth')
+                .val(data.Item.LfoDepth)
+                .trigger('change');
+            $('#osc1Detune')
+                .val(data.Item.Osc1Detune)
+                .trigger('change');
+            $('#osc2Detune')
+                .val(data.Item.Osc2Detune)
+                .trigger('change');
+            $('#attackKnob')
+                .val(data.Item.Attack)
+                .trigger('change');
+            $('#decayKnob')
+                .val(data.Item.Decay)
+                .trigger('change');
+            $('#sustainKnob')
+                .val(data.Item.Sustain)
+                .trigger('change');
+            $('#releaseKnob')
+                .val(data.Item.Release)
+                .trigger('change');
+            $('#delayKnob')
+                .val(data.Item.Delay)
+                .trigger('change');
+            $('#distortionKnob')
+                .val(data.Item.Distortion)
+                .trigger('change');
+        }
     });
 }
 
-function savePreset() {
-    var preset = prompt("Please enter preset name:", "Preset Name");
-    var presetMenu = document.getElementById("preBox");
-
-    for (var i = 0; i < presetMenu.length; i++) {
-        if (presetMenu[i].value === preset) {
-            alert("Preset name already used");
-            return;
-        }
-    }
-
-    if (preset === "Preset Name") {
-        alert("Please enter a different preset name");
-        return;
-    }
-
-    if (preset === null) {
-        return;
-    }
-
-    var option = document.createElement("option");
-    if (preset != null) {
-        option.text = preset;
-        presetMenu.add(option);
-    }
-
-    var osc1Waveform = document.getElementById('osc1Waveform');
-    var osc2Waveform = document.getElementById('osc2Waveform');
-    var lfoWaveform = document.getElementById('lfoWaveform');
-    var noiseType = document.getElementById('noiseType');
-    var lfoWave = lfoWaveform.options[lfoWaveform.selectedIndex].value;
-    var wave1 = osc1Waveform.options[osc1Waveform.selectedIndex].value;
-    var wave2 = osc2Waveform.options[osc2Waveform.selectedIndex].value;
-    var noiseValue = noiseType.options[noiseType.selectedIndex].value;
-
-    var data = {
-        preset_name: preset,
-        lfo_wave: lfoWave,
-        lfo_speed: lfoFreq,
-        lfo_depth: lfoDepth,
-        noise_type: noiseValue,
-        osc1_wave: wave1,
-        osc1_detune: osc1DetuneValue,
-        osc2_wave: wave2,
-        osc2_detune: osc2DetuneValue,
-        mixer_osc1: osc1Knob,
-        mixer_osc2: osc2Knob,
-        mixer_noise: noiseKnob,
-        cutoff: cutoffFreq,
-        resonance: resonanceQ,
-        attack: attack,
-        decay: decay,
-        sustain: sustain,
-        release: release,
-        distortion: distortionVal,
-        delay: delayVal,
-        master_volume: masterGain,
-    };
-
-    var objectSocket = io.connect();
-
-    objectSocket.emit('savePreset', data);
-
-    $('#preBox').val(preset);
-}
-
 function loadAllPresets() {
-    var objectSocket = io.connect();
-
-    objectSocket.emit('loadAllPresets');
-
-    objectSocket.on('loadAllPresets', function (objectData) {
-        if ($('#preBox option').length === 1) {
-            var presetName = document.getElementById("preBox");
-
-            for (var i = 0; i < objectData.length; i++) {
-                if (objectData[i].preset_name !== "Default") {
-                    var option = document.createElement("option");
-                    if (objectData[i].preset_name !== null) {
-                        option.text = objectData[i].preset_name;
-                        presetName.add(option);
+    $.ajax({
+        url: 'https://b347d3ott3.execute-api.us-west-2.amazonaws.com/dev/listpresets',
+        cache: false,
+        type: "GET",
+        success: function (data) {
+            if ($('#preBox option').length === 1) {
+                for (var i = 0; i < data.Items.length; i++) {
+                    if (data.Items[i].PresetName !== "Default") {
+                        $('#preBox').append(new Option(data.Items[i].PresetName));
                     }
                 }
             }
         }
-    });
+    })
 }
