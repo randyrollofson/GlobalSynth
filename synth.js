@@ -12,6 +12,7 @@ window.addEventListener('keyup', keyUpHandler, false);
 var osc1 = new Array(32);
 var osc2 = new Array(32);
 var noise = new Array(32);
+var envelope = new Array(32);
 var distortion = context.createWaveShaper();
 var delay = context.createDelay();
 
@@ -55,15 +56,15 @@ noiseVol.gain.value = noiseGain;
 
 //Envelope
 var envelope = context.createGain();
-envelope.connect(delay);
-var attack = 0.0;
-var decay = 0.0;
-var sustain = 0.0;
-var release = 0.0;
+//envelope.connect(delay);
+//var attack = 0.0;
+//var decay = 0.0;
+//var sustain = 0.0;
+//var release = 0.0;
 
 //Effects
-var distortionVal = 0.0;
-var delayVal = 0.0;
+//var distortionVal = 0.0;
+//var delayVal = 0.0;
 
 //Master Volume
 var masterVol = context.createGain();
@@ -334,19 +335,19 @@ function setRelease(value) {
     release = value;
 }
 
-function setDistortion(value) {
-    if(value == 0.0) {
-        envelope.connect(delay);
-    } else {
-        envelope.connect(distortion);
-    }
-    distortion.curve = makeDistortionCurve(value);
-    distortion.oversample = '4x';
-}
-
-function setDelay(value) {
-    delay.delayTime.value = value;
-}
+//function setDistortion(value) {
+//    if(value == 0.0) {
+//        envelope.connect(delay);
+//    } else {
+//        envelope.connect(distortion);
+//    }
+//    distortion.curve = makeDistortionCurve(value);
+//    distortion.oversample = '4x';
+//}
+//
+//function setDelay(value) {
+//    delay.delayTime.value = value;
+//}
 
 //https://noisehack.com/generate-noise-web-audio-api/
 //MIT license
@@ -470,11 +471,14 @@ function playPitch(key) {
     lowpass.Q.value = resonanceQ;
 
     //Envelope
-    //startAt = context.currentTime;
-    //envelope.gain.cancelScheduledValues(startAt);
-    //envelope.gain.setValueAtTime(envelope.gain.value, startAt);
-    //envelope.linearRampToValueAtTime(1, now + 0.2);
-    //envelope.linearRampToValueAtTime(1, now + 0.3);
+//    envelope = context.createGain();
+//    var envelope = context.createGain();
+//    envelope.connect(delay);
+//    startAt = context.currentTime;
+//    envelope.gain.cancelScheduledValues(startAt);
+//    envelope.gain.setValueAtTime(envelope.gain.value, startAt);
+//    envelope.linearRampToValueAtTime(1, now + 0.2);
+//    envelope.linearRampToValueAtTime(1, now + 0.3);
 
     //Master
     masterVol.gain.value = masterGain;
@@ -493,19 +497,21 @@ function playPitch(key) {
     noiseVol.connect(lowpass);
 
     lowpass.connect(envelope);
+    envelope.connect(masterVol);
 
-    distortion.connect(delay);
-    delay.connect(masterVol);
+//    distortion.connect(delay);
+//    delay.connect(masterVol);
     masterVol.connect(context.destination);
 
     //Start
     var now = context.currentTime;
     var attackEnd = now + attack;
-    envelope.gain.value = 0.0;
-    envelope.gain.cancelScheduledValues(now);
-    envelope.gain.setValueAtTime(0.0, now);
-    envelope.gain.linearRampToValueAtTime(masterGain, attackEnd);
-    envelope.gain.setTargetAtTime(sustain, attackEnd, decay);
+    envelope.gain.value = 0;
+//    envelope.gain.cancelScheduledValues(now);
+//    envelope.gain.setValueAtTime(0.0, now);
+//    envelope.gain.linearRampToValueAtTime(masterGain, attackEnd);
+//    envelope.gain.setTargetAtTime(sustain, attackEnd, decay);
+    envelope.gain.setTargetAtTime(1, context.currentTime, attack);
     noise[key.oscIdx].start(0);
     lfo[key.oscIdx].start(0);
     osc1[key.oscIdx].start(0);
@@ -513,16 +519,17 @@ function playPitch(key) {
 }
 
 function stopPitch(key) {
-    var now = context.currentTime;
-    var releaseEnd = now + release;
-    envelope.gain.cancelScheduledValues(now);
-    envelope.gain.setValueAtTime(envelope.gain.value, now);
-    envelope.gain.linearRampToValueAtTime(0.0, releaseEnd);
-    envelope.gain.setTargetAtTime(0.0, now, release);
-    noise[key.oscIdx].stop(releaseEnd);
-    lfo[key.oscIdx].stop(releaseEnd);
-    osc1[key.oscIdx].stop(releaseEnd);
-    osc2[key.oscIdx].stop(releaseEnd);
+//    var now = context.currentTime;
+//    var releaseEnd = now;
+//    envelope.gain.cancelScheduledValues(now);
+//    envelope.gain.setValueAtTime(envelope.gain.value, now);
+//    envelope.gain.linearRampToValueAtTime(0.0, releaseEnd);
+//    envelope.gain.setTargetAtTime(0, context.currentTime, release);
+    noise[key.oscIdx].stop(context.currentTime);
+    lfo[key.oscIdx].stop(context.currentTime);
+    osc1[key.oscIdx].stop(context.currentTime);
+    osc2[key.oscIdx].stop(context.currentTime);
+//    envelope[key.oscIdx].stop(now);
 }
 
 function loadPreset(value) {
